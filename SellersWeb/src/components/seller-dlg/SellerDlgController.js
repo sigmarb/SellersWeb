@@ -19,5 +19,6 @@ function SellersDlgController($scope) {
 
 	$scope.onCancel = function onCancel(){
 		$scope.$dismiss();
+		//lol
 	};
-});
+}); 
