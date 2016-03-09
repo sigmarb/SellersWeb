@@ -34,46 +34,6 @@ function loadingMessage()
 });
 "use strict";
 
-angular.module("project3App").controller("SellersDlgController",
-function SellersDlgController($scope) {
-
-	$scope.seller = {
-		name: "",
-		category: "",
-
-	};
-
-	$scope.onOk = function onOk(){
-		//TODO: VALIDATION
-		if ($scope.seller.name.length === 0) {
-			//birta validation skilaboð!
-		}
-		$scope.$close($scope.seller);
-	};
-
-	$scope.onCancel = function onCancel(){
-		$scope.$dismiss();
-		//lol
-	};
-}); 
-"use strict";
-
-angular.module("project3App").factory("SellerDlg", 
-	function SellerDlg($uibModal)
-	{
-		return {
-			show: function(){
-				var modalInstance = $uibModal.open({
-					templateURL:"src/components/seller-dlg.html",
-					controller:"SellerDlgController"
-
-				});
-				return modalInstance.result;
-			}
-		};
-	});
-"use strict";
-
 /**
  * This module serves as the main resource object for our app, i.e.
  * the object which connects to our REST backend and loads/saves data.
@@ -256,6 +216,46 @@ function AppResource() {
 
 	return mockResource;
 });
+"use strict";
+
+angular.module("project3App").controller("SellersDlgController",
+function SellersDlgController($scope) {
+
+	$scope.seller = {
+		name: "",
+		category: "",
+
+	};
+
+	$scope.onOk = function onOk(){
+		//TODO: VALIDATION
+		if ($scope.seller.name.length === 0) {
+			//birta validation skilaboð!
+		}
+		$scope.$close($scope.seller);
+	};
+
+	$scope.onCancel = function onCancel(){
+		$scope.$dismiss();
+		//lol
+	};
+}); 
+"use strict";
+
+angular.module("project3App").factory("SellerDlg", 
+	function SellerDlg($uibModal)
+	{
+		return {
+			show: function(){
+				var modalInstance = $uibModal.open({
+					templateURL:"src/components/seller-dlg.html",
+					controller:"SellerDlgController"
+
+				});
+				return modalInstance.result;
+			}
+		};
+	});
 "use strict";
 
 angular.module("project3App").controller("SellersController",
