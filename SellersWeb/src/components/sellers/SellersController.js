@@ -34,7 +34,7 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
 			$scope.DisplayAdd = false;
 			$scope.DisplayChange = false;
 			SellerDlg.show().then(function(seller){
-					AppResource.addSeller(seller).succcess(function(){
+					AppResource.addSeller(seller).succcess(function(seller){
 						//var newSeller = seller;
 						$scope.DisplayAdd = true;
 						$scope.DisplayChange = true;
@@ -44,12 +44,12 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
 				});
 			});
 
-			var PeterSellers = {
+			/*var PeterSellers = {
 				name: "Peter Sellers",
 				category: "Movies",
 				imagePath: "http://celeb-true.com/images/peter-sellers/peter-sellers-03.jpg"
 
-			};
+			};*/
 			
 		};
 });
