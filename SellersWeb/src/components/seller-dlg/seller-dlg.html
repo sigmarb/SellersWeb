@@ -1,1 +1,30 @@
-<input type="text" ng-model="seller.Name"/>
+<div>
+	<div class="modal-header">
+		<h3 class="modal-title">Template</h3>
+	</div>
+
+	<div class="modal-body">
+		<div>
+			<input types="text" ng-model="seller.name" placeholder="Name"/>
+		</div>
+		<div>
+			<input types="text" ng-model="seller.category" placeholder="Category" />
+		</div>
+		<div>
+			<input types="text" ng-model="seller.imagePath" placeholder="Image URL"/>
+		</div>
+		<div>
+			{{errorMessage}}
+		</div>
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="onOk()">
+			<span translate="sellers.Ok"></span>
+		</button>
+		<button class="btn btn-primary" ng-click="onCancel()">
+			<span translate="sellers.Cancel"></span>
+		</button>
+	</div>
+
+</div>
