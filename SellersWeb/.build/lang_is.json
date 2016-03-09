@@ -2,7 +2,9 @@
 	"sellers": {
 		"Title": "Seljendur",
 		"Name": "Nafn",
-		"Category": "Category",
+		"Add": "Bæta við",
+		"Category": "Flokkur",
+		"Image": "Mynd",
 		"Messages": {
 			"LoadFailed": "Ekki tókst að sækja lista yfir seljendur",
 			"SaveSucceeded": "Nýjum seljanda hefur verið bætt við",
