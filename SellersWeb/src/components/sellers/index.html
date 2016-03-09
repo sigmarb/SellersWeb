@@ -15,13 +15,19 @@
 				<i class="fa fa-plus"/>
 					<span translate="sellers.Name"/>
 				</th>
-				<th translate="sellers.Category">Category</th>
+				<th>
+					<span translate="sellers.Category"/>
+				</th>
+				<th>
+					
+				</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="s in sellers">
 				<td>{{s.name}}</td>
 				<td>{{s.category}}</td>
+				<td><img src="{{s.imagePath}}" alt="error"></td>
 			</tr>
 		</tbody>
 	</table>
