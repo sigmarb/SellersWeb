@@ -3,8 +3,7 @@
 angular.module("project3App").factory("SellerDlg", 
 	function SellerDlg($uibModal)
 	{
-		return
-		{
+		return {
 			show: function(){
 				var modalInstance = $uibModal.open({
 					templateURL:"src/components",
@@ -13,5 +12,5 @@ angular.module("project3App").factory("SellerDlg",
 				});
 				return modalInstance.result;
 			}
-		}
+		};
 	});

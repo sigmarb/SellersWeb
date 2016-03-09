@@ -11,9 +11,9 @@ function SellersDlgController($scope) {
 
 	$scope.onOk = function onOk(){
 		//TODO: VALIDATION
-		if ($scope.seller.name.length == 0) {
+		if ($scope.seller.name.length === 0) {
 			//birta validation skilaboð!
-		};
+		}
 		$scope.$close($scope.seller);
 	};
 

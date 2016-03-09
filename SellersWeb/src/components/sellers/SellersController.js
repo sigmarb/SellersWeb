@@ -18,13 +18,13 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
 		{
 
 			SellerDlg.show().then(function(seller){
-					AppResource.addSeller(peterSellers).succcess(function(){
+					AppResource.addSeller(seller).succcess(function(){
 						var newSeller = seller;
-					}) error(function() {
+					}).error(function() {
 							//TODO:
 							centrisNotify.error("sellers.Messages.SaveFailed");
 				});
-			})
+			});
 
 			var PeterSellers = {
 				name: "Peter Sellers",
@@ -33,6 +33,6 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
 
 			};
 			
-		}
+		};
 
 });

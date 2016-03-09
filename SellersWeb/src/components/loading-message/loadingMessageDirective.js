@@ -8,4 +8,4 @@ function loadingMessage()
 		restrict: "E",
 		templateUrl: "src/components/loading-message/loading.html"
 	};
-})
+});
