@@ -4,7 +4,12 @@
 	<loading-message></loading-message>
 </div>
 <div ng-hide="isLoading">
-<button class="btn btn-primary" ng-click="onAddSeller()">
+<div>
+	<input type="text" >
+	<input type="text">
+	<input type="text">
+	<button class="btn btn-primary" ng-click="onAddSeller()" ng-show="DisplayAdd">
+</div>
 <i class="fa fa-plus"/>
 <span translate="sellers.Add"/>
 </button>
@@ -27,7 +32,7 @@
 			<tr ng-repeat="s in sellers">
 				<td>{{s.name}}</td>
 				<td>{{s.category}}</td>
-				<td><img src="{{s.imagePath}}" alt="error"></td>
+				<td><img src="{{s.imagePath}}" alt="error" height="100" width="100"></td>
 			</tr>
 		</tbody>
 	</table>

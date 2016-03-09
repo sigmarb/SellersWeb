@@ -6,7 +6,15 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
 	// add/update sellers etc.
 
 		$scope.isLoading = true;
-		console.log(AppResource);
+		$scope.DisplayAdd = true;
+		$scope.DisplayChange = true;
+		$scope.selectedUser = {
+			name: "",
+			category: "",
+			imagePath: ""
+		};
+
+
 		var result = AppResource.getSellers();
 		console.log(result);
 		result.success(function(sellers)
@@ -17,12 +25,19 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
 			$scope.isLoading = false;
 		});
 
+		function getSelectedUser(){
+			return $scope.selectedUser;
+		}
+
 		$scope.onAddSeller = function onAddSeller()
 		{
-
+			$scope.DisplayAdd = false;
+			$scope.DisplayChange = false;
 			SellerDlg.show().then(function(seller){
 					AppResource.addSeller(seller).succcess(function(){
-						var newSeller = seller;
+						//var newSeller = seller;
+						$scope.DisplayAdd = true;
+						$scope.DisplayChange = true;
 					}).error(function() {
 							//TODO:
 							centrisNotify.error("sellers.Messages.SaveFailed");
