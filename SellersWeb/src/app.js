@@ -12,7 +12,7 @@ angular.module("project3App", ["ngRoute", "ui.bootstrap", "sharedServices", "pas
 		suffix: ".json"
 	});
 
-	
+	//push
 	$translateProvider.use("is");
 });
 
