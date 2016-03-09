@@ -11,7 +11,8 @@
 			"LoadFailed":            "Failed to load the list of sellers",
 			"SaveSucceeded":         "The seller has been added successfully",
 			"SaveFailed":            "Unfortunately we could not add a new seller",
-            "NoName":                "Please fill in a name"
+            "NoName":                "Please fill in a name",
+            "EditUserFailed":		 "Unfortunately we could not update this user"
 		}
 	}
 }

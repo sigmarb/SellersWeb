@@ -11,7 +11,8 @@
 			"LoadFailed":            "Ekki tókst að sækja lista yfir seljendur",
 			"SaveSucceeded":         "Nýjum seljanda hefur verið bætt við",
 			"SaveFailed":            "Því miður tókst ekki að bæta við nýjum seljanda",
-            "NoName":                "Vinsamlegast fylltu inn nafn"
+            "NoName":                "Vinsamlegast fylltu inn nafn",
+            "EditUserFailed":		 "Því miður tókst ekki að uppfæra notandann"
 		}
 	}
 }

@@ -34,7 +34,7 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
 			$scope.DisplayAdd = false;
 			$scope.DisplayChange = false;
 			SellerDlg.show().then(function(seller){
-					AppResource.addSeller(seller).succcess(function(seller){
+					AppResource.addSeller(seller).success(function(seller){
 						//var newSeller = seller;
 						$scope.DisplayAdd = true;
 						$scope.DisplayChange = true;
@@ -51,5 +51,21 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
 
 			};*/
 			
+		};
+
+		$scope.onEditSeller = function onEditSeller(sellerId)
+		{
+			$scope.DisplayAdd = false;
+			$scope.DisplayChange = false;
+			SellerDlg.show().then(function(seller){
+					AppResource.updateSeller(sellerId,seller).success(function(seller){
+						//var newSeller = seller;
+						$scope.DisplayAdd = true;
+						$scope.DisplayChange = true;
+					}).error(function() {
+							//TODO:
+							centrisNotify.error("sellers.Messages.EditUserFailed");
+				});
+			});
 		};
 });
