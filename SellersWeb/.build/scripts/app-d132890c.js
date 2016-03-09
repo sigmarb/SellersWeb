@@ -74,7 +74,8 @@ function AppResource() {
 		createSeller(1, "Hannyrðaþjónusta Hannesar", "Fatnaður", "http://i.imgur.com/OYVpe2W.jpg?fb"),
 		createSeller(2, "Smíðaverkstæði Sigríðar", "Skartgripir", "https://i.imgur.com/ywaPivVh.jpg"),
 		createSeller(3, "Sælgætisgerð Sjonna og Súsí", "Matvörur", "http://i.imgur.com/IuL474x.jpg"),
-		createSeller(4, "Leirkeraverkstæði Lomma", "Keramik", "https://upload.wikimedia.org/wikipedia/commons/6/67/Potter_at_work,_Jaura,_India.jpg")
+		createSeller(4, "Leirkeraverkstæði Lomma", "Keramik", "https://upload.wikimedia.org/wikipedia/commons/6/67/Potter_at_work,_Jaura,_India.jpg"),
+		createSeller(4, "Samtökin 78" , "Fag", "https://scontent-arn2-1.xx.fbcdn.net/hphotos-xfa1/v/t1.0-9/10982113_10155189658390537_3147129799762144313_n.jpg?oh=29dbdfd57a73611db51f1501ce4449b2&oe=578C945A")
 	];
 
 	var nextID = 5;
@@ -263,7 +264,15 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
 	// add/update sellers etc.
 
 		$scope.isLoading = true;
-		console.log(AppResource);
+		$scope.DisplayAdd = true;
+		$scope.DisplayChange = true;
+		$scope.selectedUser = {
+			name: "",
+			category: "",
+			imagePath: ""
+		};
+
+
 		var result = AppResource.getSellers();
 		console.log(result);
 		result.success(function(sellers)
@@ -274,12 +283,19 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
 			$scope.isLoading = false;
 		});
 
+		function getSelectedUser(){
+			return $scope.selectedUser;
+		}
+
 		$scope.onAddSeller = function onAddSeller()
 		{
-
+			$scope.DisplayAdd = false;
+			$scope.DisplayChange = false;
 			SellerDlg.show().then(function(seller){
 					AppResource.addSeller(seller).succcess(function(){
-						var newSeller = seller;
+						//var newSeller = seller;
+						$scope.DisplayAdd = true;
+						$scope.DisplayChange = true;
 					}).error(function() {
 							//TODO:
 							centrisNotify.error("sellers.Messages.SaveFailed");
