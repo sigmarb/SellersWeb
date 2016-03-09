@@ -5,10 +5,13 @@
 		"Category":					 "Category",
         "Add":                       "Add",
         "Image":                     "Image",
+        "Ok":                        "Ok",
+        "Failed":                      "Failed",
 		"Messages" : {
 			"LoadFailed":            "Failed to load the list of sellers",
 			"SaveSucceeded":         "The seller has been added successfully",
-			"SaveFailed":            "Unfortunately we could not add a new seller"
+			"SaveFailed":            "Unfortunately we could not add a new seller",
+            "NoName":                "Please fill in a name"
 		}
 	}
 }

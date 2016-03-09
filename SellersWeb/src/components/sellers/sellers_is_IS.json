@@ -5,10 +5,13 @@
         "Add":                       "Bæta við",
 		"Category":					 "Flokkur",
         "Image":                     "Mynd",
+        "Ok":                        "Ok",
+        "Failed":                    "Villa",
 		"Messages" : {
 			"LoadFailed":            "Ekki tókst að sækja lista yfir seljendur",
 			"SaveSucceeded":         "Nýjum seljanda hefur verið bætt við",
-			"SaveFailed":            "Því miður tókst ekki að bæta við nýjum seljanda"
+			"SaveFailed":            "Því miður tókst ekki að bæta við nýjum seljanda",
+            "NoName":                "Vinsamlegast fylltu inn nafn"
 		}
 	}
 }
