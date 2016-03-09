@@ -2,7 +2,7 @@
 	"sellers" : {
 		"Title":                     "Seljendur",
 		"Name":                      "Nafn",
-		"Category"					 "Category",
+		"Category":					 "Category",
 		"Messages" : {
 			"LoadFailed":            "Ekki tókst að sækja lista yfir seljendur",
 			"SaveSucceeded":         "Nýjum seljanda hefur verið bætt við",

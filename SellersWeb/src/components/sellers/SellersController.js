@@ -6,7 +6,10 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
 	// add/update sellers etc.
 
 		$scope.isLoading = true;
-		AppResource.getSellers().succcess(function(sellers)
+		console.log(AppResource);
+		var result = AppResource.getSellers();
+		console.log(result);
+		result.success(function(sellers)
 		{
 			$scope.sellers = sellers;
 			$scope.isLoading = false;
@@ -34,5 +37,4 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
 			};
 			
 		};
-
 });
