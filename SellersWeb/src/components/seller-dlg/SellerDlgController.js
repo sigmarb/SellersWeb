@@ -1,7 +1,7 @@
 "use strict";
 
-angular.module("project3App").controller("SellersDlgController",
-function SellersDlgController($scope) {
+angular.module("project3App").controller("SellerDlgController",
+function SellerDlgController($scope) {
 
 	$scope.seller = {
 		name: "",
@@ -14,7 +14,7 @@ function SellersDlgController($scope) {
         $scope.seller.name = Name;
         $scope.seller.category = Category;
         $scope.seller.imagePath = Image;
-    }
+    };
     
 	$scope.onOk = function onOk(){
 		//TODO: VALIDATION
