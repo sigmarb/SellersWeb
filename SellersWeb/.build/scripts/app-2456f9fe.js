@@ -97,9 +97,10 @@ function AppResource() {
 	// Out mock data. Note that this is just to help us
 	// during development!
 	var mockSellers = [
-		createSeller(1, "Samtökin 78" , "SuperFag", "https://scontent-arn2-1.xx.fbcdn.net/hphotos-xfa1/v/t1.0-9/10982113_10155189658390537_3147129799762144313_n.jpg?oh=29dbdfd57a73611db51f1501ce4449b2&oe=578C945A"),
-        createSeller(2, "Talsmaður Gaysians á Íslandi", "Gay Asian", "https://scontent-arn2-1.xx.fbcdn.net/hprofile-xal1/v/t1.0-1/c0.9.160.160/p160x160/10414904_10153878856753675_3305415611640242960_n.jpg?oh=1e92a6bf27c55774388fa41d2cf9df90&oe=5794CFFC"),
-        createSeller(3, "BDSM klúbburinn", "Sadisti", "https://scontent-arn2-1.xx.fbcdn.net/hphotos-xpt1/v/t1.0-9/11828730_10153056008067143_6393650730725002486_n.jpg?oh=58271c70e4454a0a8774c912cb50d66e&oe=578DFAFC")
+		createSeller(1, "Hannyrðaþjónusta Hannesar", "Fatnaður", "http://i.imgur.com/OYVpe2W.jpg?fb"),
+		createSeller(2, "Smíðaverkstæði Sigríðar", "Skartgripir", "https://i.imgur.com/ywaPivVh.jpg"),
+		createSeller(3, "Sælgætisgerð Sjonna og Súsí", "Matvörur", "http://i.imgur.com/IuL474x.jpg"),
+		createSeller(4, "Leirkeraverkstæði Lomma", "Keramik", "https://upload.wikimedia.org/wikipedia/commons/6/67/Potter_at_work,_Jaura,_India.jpg"),
 	];
 
 	var nextID = 5;
@@ -246,12 +247,23 @@ angular.module("project3App").controller("sellersDetailsController", ["$scope", 
 function sellersDetailsController($scope, AppResource, $routeParams) {
     $scope.id = $routeParams.id;
 	$scope.seller = {};
+	$scope.sellerProduct = [];
 	var sellerID = parseInt($scope.id);
 
 	AppResource.getSellerDetails(sellerID).success(function(seller) {
 		$scope.seller = seller;
 	});
-}]);
+
+	AppResource.getSellerProducts(sellerID).success(function(sellerProduct)
+	{
+		$scope.sellerProduct = sellerProduct;
+	});
+}
+
+
+
+
+]);
 "use strict";
 
 angular.module("project3App").factory("SellerDlg", 

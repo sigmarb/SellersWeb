@@ -10,12 +10,33 @@
 	{{seller.category}}
 </div>
 
+</head>
+<body>
+    <section>
+        <ul ng-init="tab = 1">
+            <li>
+                <a href ng-click="tab = 1">All products</a>
+            </li>
+            <li>
+                <a href ng-click="tab = 2">Top10</a>
+            </li>
+            <li>
+                <a href ng-click="tab = 3">hmm</a>
+            </li>
+            <br></br>
+            <div class="tabStyle" ng-show="tab === 1">
+                <ul ng-repeat="p in sellerProduct">
+                    <li >{{p.name}}</li>
+                    <li >{{p.price}}</li>
+                    <li >{{p.quantitySold}}</li>
+                    <li >{{p.quantityInStock}}</li>
+                    <li><img src="{{p.imagePath}}" alt="error" height="100" width="100"></li>
+                </ul> 
+            </div>
+            <p ng-show="tab === 2"> jakeee </p>
+            <p ng-show="tab === 3"> mafakka </p>
+        </ul>
+    </section>
+</body>
 
-
-<ul ng-repeat="p in sellerProduct">
-	<li >{{p.name}}</li>
-	<li >{{p.price}}</li>
-	<li >{{p.quantitySold}}</li>
-	<li >{{p.quantityInStock}}</li>
-	<li><img src="{{p.imagePath}}" alt="error" height="100" width="100"></li>
-</ul>
+  
