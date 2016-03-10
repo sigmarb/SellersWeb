@@ -44,13 +44,6 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
 				});
 			});
 
-			/*var PeterSellers = {
-				name: "Peter Sellers",
-				category: "Movies",
-				imagePath: "http://celeb-true.com/images/peter-sellers/peter-sellers-03.jpg"
-
-			};*/
-			
 		};
 
 		$scope.onEditSeller = function onEditSeller(sellerId)
@@ -68,4 +61,6 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
 				});
 			});
 		};
+
+		
 });
