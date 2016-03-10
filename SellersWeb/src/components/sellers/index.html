@@ -8,12 +8,12 @@
 </button>
 	<table>
 		<thead>
-			<tr>
-				<th>
+			<tr table-sort="name">
+				<th data-columnName="name">
 				<i class="fa fa-plus"/>
-					<span translate="sellers.Name"/>
+					<span translate="sellers.Name" ng-mouseover="sellers.Name"/>
 				</th>
-				<th>
+				<th data-columnName="category">
 					<span translate="sellers.Category"/>
 				</th>
 				<th>
@@ -22,7 +22,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="s in sellers">
+			<tr ng-repeat="s in sellers | orderBy:predicate:reverse">
 				
 				<td><a ng-href="#/sellers/{{s.id}}"></a>{{s.name}}</td>
 				<td>{{s.category}}</td>
