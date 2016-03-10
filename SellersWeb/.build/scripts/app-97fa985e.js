@@ -5,9 +5,9 @@ angular.module("project3App", ["ngRoute", "ui.bootstrap", "sharedServices", "pas
 	$routeProvider.when("/", {
 		controller: "SellersController",
 		templateUrl: "components/sellers/index.html"
-	}).when("#/sellers/:id", {
+	}).when("#/seller/:id", {
 		controller: "sellersDetailsController",
-		templateUrl: "components/sellers/sellersDetails.html"
+		templateUrl: "components/seller-deatails/sellersDetails.html"
 	});
 
 	$translateProvider.useStaticFilesLoader({
@@ -244,6 +244,12 @@ function AppResource() {
 });
 "use strict";
 
+angular.module("project3App").controller("sellersDetailsController",
+function sellersDetailsController($scope, AppResource, routeParams) {
+    
+});
+"use strict";
+
 angular.module("project3App").factory("SellerDlg", 
 	function SellerDlg($uibModal)
 	{
@@ -369,7 +375,6 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
 
 		
 });
-
 "use strict";
 
 /**
