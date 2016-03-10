@@ -5,7 +5,8 @@
         "Add":                       "Bæta við",
 		"Category":					 "Flokkur",
         "Image":                     "Mynd",
-        "Ok":                        "Ok",
+        "Ok":						 "Ok",
+        "Cancel":					 "Hætta við",
         "Failed":                    "Villa",
 		"Messages" : {
 			"LoadFailed":            "Ekki tókst að sækja lista yfir seljendur",

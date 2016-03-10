@@ -6,6 +6,7 @@
 		"Category": "Flokkur",
 		"Image": "Mynd",
 		"Ok": "Ok",
+		"Cancel": "Hætta við",
 		"Failed": "Villa",
 		"Messages": {
 			"LoadFailed": "Ekki tókst að sækja lista yfir seljendur",

@@ -5,7 +5,7 @@
 		"Category":					 "Category",
         "Add":                       "Add",
         "Image":                     "Image",
-        "Ok":                        "Ok",
+        "Ok":						 "Ok",
         "Failed":                      "Failed",
 		"Messages" : {
 			"LoadFailed":            "Failed to load the list of sellers",
