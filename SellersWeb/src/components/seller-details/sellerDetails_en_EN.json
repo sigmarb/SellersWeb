@@ -1,0 +1,11 @@
+{
+	"product" : {
+		"id":						"id",
+		"name":						"name",
+		"price":					"price",
+		"quantitySold":				"quantitySold",
+		"quantityInStock":			"quantityInStock",
+		"image":					"image"
+	}
+}
+

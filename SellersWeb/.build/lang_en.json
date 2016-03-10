@@ -1,4 +1,12 @@
 {
+	"product": {
+		"id": "id",
+		"name": "name",
+		"price": "price",
+		"quantitySold": "quantitySold",
+		"quantityInStock": "quantityInStock",
+		"image": "image"
+	},
 	"sellers": {
 		"Title": "Sellers List",
 		"Name": "Name",

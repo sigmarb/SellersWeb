@@ -1,0 +1,10 @@
+{
+	"product" : {
+		"id":						"id",
+		"name":						"nafn",
+		"price":					"verð",
+		"quantitySold":				"vörur seldar",
+		"quantityInStock":			"vörur á lager",
+		"image":					"image"
+	}
+}
