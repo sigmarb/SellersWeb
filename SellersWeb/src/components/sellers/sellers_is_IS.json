@@ -5,13 +5,9 @@
         "Add":                       "Bæta við",
 		"Category":					 "Flokkur",
         "Image":                     "Mynd",
-<<<<<<< HEAD
         "Ok":						 "Ok",
         "Cancel":					 "Hætta við",
-=======
-        "Ok":                        "Ok",
         "Failed":                    "Villa",
->>>>>>> 32c6b5015c563d4ec8ca80b4f0e4c2dc26296b3d
 		"Messages" : {
 			"LoadFailed":            "Ekki tókst að sækja lista yfir seljendur",
 			"SaveSucceeded":         "Nýjum seljanda hefur verið bætt við",

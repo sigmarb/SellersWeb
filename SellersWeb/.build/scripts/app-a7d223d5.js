@@ -242,6 +242,7 @@ function AppResource() {
 
 	return mockResource;
 });
+
 "use strict";
 
 angular.module("project3App").controller("SellerDlgController",
@@ -369,7 +370,6 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
 
 		
 });
-
 "use strict";
 
 /**
