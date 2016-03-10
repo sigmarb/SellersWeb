@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("project3App").controller("SellerDlgController",
-function SellerDlgController($scope) {
+function SellerDlgController($scope, centrisNotify) {
 
 	$scope.seller = {
 		name: "",
@@ -19,15 +19,21 @@ function SellerDlgController($scope) {
 	$scope.onOk = function onOk(){
 		//TODO: VALIDATION
 		if ($scope.seller.name.length === 0) {
-			$scope.errorMessage = "Invalid name!";
+			//$scope.errorMessage = "Invalid name!";
+            centrisNotify.error("sellers.Messages.NoName", "sellers.Failed");
+            return;
 		}
         
         if ($scope.seller.category.length === 0) {
-            $scope.errorMessage = "Invalid category!";
+            //$scope.errorMessage = "Invalid category!";
+            centrisNotify.error("Invalid category!");
+            return;
         }
         
         if ($scope.seller.imagePath.length === 0) {
-            $scope.errorMessage = "Invalid image url!";
+            //$scope.errorMessage = "Invalid image url!";
+            centrisNotify.error("Invalid image url!");
+            return;
         }
 		$scope.$close($scope.seller);
 	};

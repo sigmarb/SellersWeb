@@ -25,9 +25,11 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="s in sellers">
+				
 				<td>{{s.name}}</td>
 				<td>{{s.category}}</td>
 				<td><img src="{{s.imagePath}}" alt="error" height="100" width="100"></td>
+				<td><button data="{{s.id}}" class="btn btn-primary" ng-click="onEditSeller(s.id)" ng-show="DisplayAdd">Edit</button>
 			</tr>
 		</tbody>
 	</table>

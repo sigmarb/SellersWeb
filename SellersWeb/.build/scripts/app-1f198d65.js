@@ -219,7 +219,7 @@ function AppResource() {
 "use strict";
 
 angular.module("project3App").controller("SellerDlgController",
-function SellerDlgController($scope) {
+function SellerDlgController($scope, centrisNotify) {
 
 	$scope.seller = {
 		name: "",
@@ -237,15 +237,21 @@ function SellerDlgController($scope) {
 	$scope.onOk = function onOk(){
 		//TODO: VALIDATION
 		if ($scope.seller.name.length === 0) {
-			$scope.errorMessage = "Invalid name!";
+			//$scope.errorMessage = "Invalid name!";
+            centrisNotify.error("sellers.Messages.NoName", "sellers.Failed");
+            return;
 		}
         
         if ($scope.seller.category.length === 0) {
-            $scope.errorMessage = "Invalid category!";
+            //$scope.errorMessage = "Invalid category!";
+            centrisNotify.error("Invalid category!");
+            return;
         }
         
         if ($scope.seller.imagePath.length === 0) {
-            $scope.errorMessage = "Invalid image url!";
+            //$scope.errorMessage = "Invalid image url!";
+            centrisNotify.error("Invalid image url!");
+            return;
         }
 		$scope.$close($scope.seller);
 	};
@@ -307,7 +313,7 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
 			$scope.DisplayAdd = false;
 			$scope.DisplayChange = false;
 			SellerDlg.show().then(function(seller){
-					AppResource.addSeller(seller).succcess(function(seller){
+					AppResource.addSeller(seller).success(function(seller){
 						//var newSeller = seller;
 						$scope.DisplayAdd = true;
 						$scope.DisplayChange = true;
@@ -324,6 +330,22 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
 
 			};*/
 			
+		};
+
+		$scope.onEditSeller = function onEditSeller(sellerId)
+		{
+			$scope.DisplayAdd = false;
+			$scope.DisplayChange = false;
+			SellerDlg.show().then(function(seller){
+					AppResource.updateSeller(sellerId,seller).success(function(seller){
+						//var newSeller = seller;
+						$scope.DisplayAdd = true;
+						$scope.DisplayChange = true;
+					}).error(function() {
+							//TODO:
+							centrisNotify.error("sellers.Messages.EditUserFailed");
+				});
+			});
 		};
 });
 "use strict";
@@ -391,7 +413,7 @@ function(toastr, toastrConfig, $translate, $rootScope) {
 
 		// In case the previous toast was an undo toast,
 		// which overrode the template path:
-		toastrConfig.templates.toast = "components/centris-notify/centris-notify.tpl.html";
+		toastrConfig.templates.toast = "shared/notify/centris-notify.tpl.html";
 
 		if (type === "success") {
 			toastr.success(message, title, options);
@@ -419,7 +441,7 @@ function(toastr, toastrConfig, $translate, $rootScope) {
 
 		// Slight hack, but hopefully the library will be able to
 		// officcially support per-toast templates in later versions
-		toastrConfig.templates.toast = "components/centris-notify/centris-notify-undo.tpl.html";
+		toastrConfig.templates.toast = "shared/notify/centris-notify-undo.tpl.html";
 
 		// HACK! Because toastr doesn't allow us to pass in
 		// any "Item Data" (see MFC CListCtrl), we need to

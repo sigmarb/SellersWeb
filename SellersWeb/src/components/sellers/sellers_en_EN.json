@@ -5,11 +5,18 @@
 		"Category":					 "Category",
         "Add":                       "Add",
         "Image":                     "Image",
+<<<<<<< HEAD
         "Ok":						 "Ok",
+=======
+        "Ok":                        "Ok",
+        "Failed":                      "Failed",
+>>>>>>> 32c6b5015c563d4ec8ca80b4f0e4c2dc26296b3d
 		"Messages" : {
 			"LoadFailed":            "Failed to load the list of sellers",
 			"SaveSucceeded":         "The seller has been added successfully",
-			"SaveFailed":            "Unfortunately we could not add a new seller"
+			"SaveFailed":            "Unfortunately we could not add a new seller",
+            "NoName":                "Please fill in a name",
+            "EditUserFailed":		 "Unfortunately we could not update this user"
 		}
 	}
 }
