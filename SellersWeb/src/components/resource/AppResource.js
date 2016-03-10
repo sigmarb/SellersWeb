@@ -41,7 +41,6 @@ function AppResource() {
 		createSeller(2, "Smíðaverkstæði Sigríðar", "Skartgripir", "https://i.imgur.com/ywaPivVh.jpg"),
 		createSeller(3, "Sælgætisgerð Sjonna og Súsí", "Matvörur", "http://i.imgur.com/IuL474x.jpg"),
 		createSeller(4, "Leirkeraverkstæði Lomma", "Keramik", "https://upload.wikimedia.org/wikipedia/commons/6/67/Potter_at_work,_Jaura,_India.jpg"),
-		createSeller(4, "Samtökin 78" , "Fag", "https://scontent-arn2-1.xx.fbcdn.net/hphotos-xfa1/v/t1.0-9/10982113_10155189658390537_3147129799762144313_n.jpg?oh=29dbdfd57a73611db51f1501ce4449b2&oe=578C945A")
 	];
 
 	var nextID = 5;

@@ -11,4 +11,11 @@
 </div>
 
 
-				
+
+<ul ng-repeat="p in sellerProduct">
+	<li >{{p.name}}</li>
+	<li >{{p.price}}</li>
+	<li >{{p.quantitySold}}</li>
+	<li >{{p.quantityInStock}}</li>
+	<li><img src="{{p.imagePath}}" alt="error" height="100" width="100"></li>
+</ul>
