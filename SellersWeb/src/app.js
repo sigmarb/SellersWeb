@@ -5,9 +5,9 @@ angular.module("project3App", ["ngRoute", "ui.bootstrap", "sharedServices", "pas
 	$routeProvider.when("/", {
 		controller: "SellersController",
 		templateUrl: "components/sellers/index.html"
-	}).when("#/seller/:id", {
+	}).when("/seller/:id", {
 		controller: "sellersDetailsController",
-		templateUrl: "components/seller-deatails/sellersDetails.html"
+		templateUrl: "components/seller-details/sellersDetails.html"
 	});
 
 	$translateProvider.useStaticFilesLoader({

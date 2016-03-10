@@ -5,9 +5,9 @@ angular.module("project3App", ["ngRoute", "ui.bootstrap", "sharedServices", "pas
 	$routeProvider.when("/", {
 		controller: "SellersController",
 		templateUrl: "components/sellers/index.html"
-	}).when("#/seller/:id", {
+	}).when("/seller/:id", {
 		controller: "sellersDetailsController",
-		templateUrl: "components/seller-deatails/sellersDetails.html"
+		templateUrl: "components/seller-details/sellersDetails.html"
 	});
 
 	$translateProvider.useStaticFilesLoader({
@@ -244,10 +244,16 @@ function AppResource() {
 });
 "use strict";
 
-angular.module("project3App").controller("sellersDetailsController",
-function sellersDetailsController($scope, AppResource, routeParams) {
-    
-});
+angular.module("project3App").controller("sellersDetailsController", ["$scope", "AppResource", "$routeParams",
+function sellersDetailsController($scope, AppResource, $routeParams) {
+    $scope.id = $routeParams.id;
+	$scope.seller = {};
+	var sellerID = parseInt($scope.id);
+
+	AppResource.getSellerDetails(sellerID).success(function(seller) {
+		$scope.seller = seller;
+	});
+}]);
 "use strict";
 
 angular.module("project3App").factory("SellerDlg", 
