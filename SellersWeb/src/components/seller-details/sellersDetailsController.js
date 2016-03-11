@@ -5,6 +5,7 @@ function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg)
     $scope.id = $routeParams.id;
 	$scope.seller = {};
 	$scope.sellerProduct = [];
+	$scope.sellerTop10Product = [];
     $scope.DisplayAdd = true;
     $scope.isLoading = true;
     $scope.selectedProduct = {
@@ -31,10 +32,28 @@ function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg)
 	AppResource.getSellerProducts(sellerID).success(function(sellerProduct)
 	{
 		$scope.sellerProduct = sellerProduct;
+		sellerProduct.sort(compare);
+		$scope.sellerTop10Product = sellerProduct.slice(0, 10);
         $scope.isLoading = false;
 	}).error(function(){
         $scope.isLoading = false;
     });
+
+    	function compare(a,b) 
+	{
+  		if (a.quantitySold > b.quantitySold) 
+  		{
+    		return -1;
+  		}
+  		else if (a.quantitySold  < b.quantitySold) 
+  		{
+    		return 1;
+  		}
+  		else 
+  		{
+    		return 0;
+  		}
+	}
     
     $scope.onAddProduct = function onAddProduct(sellerID) {
         $scope.DisplayAdd = false;
