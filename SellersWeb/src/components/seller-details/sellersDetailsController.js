@@ -15,6 +15,12 @@ function sellersDetailsController($scope, AppResource, $routeParams) {
 	{
 		$scope.sellerProduct = sellerProduct;
 	});
+
+	$scope.sellerTop10Product = $scope.sellerProduct.slice(0,10);
+
+	var test = function test(){
+		console.log("ASDF");
+	};
 }
 
 
