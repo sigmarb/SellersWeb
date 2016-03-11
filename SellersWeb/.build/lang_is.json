@@ -1,17 +1,9 @@
 {
-	"product": {
-		"id": "id",
-		"name": "nafn",
-		"price": "verð",
-		"quantitySold": "vörur seldar",
-		"quantityInStock": "vörur á lager",
-		"image": "image",
-		"Add": "Bæta við"
-	},
 	"sellers": {
 		"Title": "Seljendur",
 		"Name": "Nafn",
 		"Add": "Bæta við",
+		"Edit": "Breyta",
 		"Category": "Flokkur",
 		"Image": "Mynd",
 		"Ok": "Ok",
@@ -24,5 +16,14 @@
 			"NoName": "Vinsamlegast fylltu inn nafn",
 			"EditUserFailed": "Því miður tókst ekki að uppfæra notandann"
 		}
+	},
+	"product": {
+		"id": "id",
+		"name": "nafn",
+		"price": "verð",
+		"quantitySold": "vörur seldar",
+		"quantityInStock": "vörur á lager",
+		"image": "image",
+		"Add": "Bæta við"
 	}
 }

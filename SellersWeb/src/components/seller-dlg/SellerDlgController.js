@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("project3App").controller("SellerDlgController",
-function SellerDlgController($scope, centrisNotify) {
+function SellerDlgController($scope, centrisNotify, $translate) {
 
 	$scope.seller = {
 		name: "",
@@ -40,6 +40,5 @@ function SellerDlgController($scope, centrisNotify) {
 
 	$scope.onCancel = function onCancel(){
 		$scope.$dismiss();
-		//lol
 	};
 }); 

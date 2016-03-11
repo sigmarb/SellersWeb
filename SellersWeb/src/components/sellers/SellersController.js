@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("project3App").controller("SellersController",
-function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
+function SellersController($scope, AppResource, centrisNotify, SellerDlg, $translate) {
 	// TODO: load data from AppResource! Also, add other methods, such as to
 	// add/update sellers etc.
 
@@ -62,5 +62,8 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
 			});
 		};
 
-		
+		$scope.changeLanguage = function changeLanguage(key){
+
+			$translate.use(key);
+		};
 });
