@@ -60,6 +60,83 @@ function loadingMessage()
 });
 "use strict";
 
+angular.module("project3App").factory("ProductDlg", 
+	function ProductDlg($uibModal)
+	{
+		return {
+			show: function(){
+				var modalInstance = $uibModal.open({
+					templateUrl:"components/product/Product-dlg.html",
+					controller:"ProductDlgController"
+
+				});
+				return modalInstance.result;
+			}
+		};
+});
+"use strict";
+
+angular.module("project3App").controller("ProductDlgController",
+function ProductDlgController($scope, centrisNotify) {
+
+	$scope.product = {
+		name: "",
+		price: "",
+        quantitySold: "",
+        quantityInStock: "",
+        imagePath: ""
+
+	};
+    
+    $scope.setProducts = function setProducts(Name, Price, QSold ,QinStock, Image) {
+        $scope.product.name = Name;
+        $scope.product.price = Price;
+        $scope.product.quantitySold = QSold;
+        $scope.product.quantityInStock = QinStock;
+        $scope.product.imagePath = Image;
+    };
+    
+	$scope.onOk = function onOk(){
+		//TODO: VALIDATION
+		if ($scope.product.name.length === 0) {
+			//$scope.errorMessage = "Invalid name!";
+            centrisNotify.error("sellers.Messages.NoName", "sellers.Failed");
+            return;
+		}
+        
+        if ($scope.product.price.length === 0) {
+            //$scope.errorMessage = "Invalid category!";
+            centrisNotify.error("Invalid category!");
+            return;
+        }
+        
+        if ($scope.product.quantitySold.length === 0) {
+            //$scope.errorMessage = "Invalid category!";
+            centrisNotify.error("Invalid category!");
+            return;
+        }
+        
+        if ($scope.product.quantityInStock.length === 0) {
+            //$scope.errorMessage = "Invalid category!";
+            centrisNotify.error("Invalid category!");
+            return;
+        }
+        
+        if ($scope.product.imagePath.length === 0) {
+            //$scope.errorMessage = "Invalid image url!";
+            centrisNotify.error("Invalid image url!");
+            return;
+        }
+		$scope.$close($scope.product);
+	};
+
+	$scope.onCancel = function onCancel(){
+		$scope.$dismiss();
+		//lol
+	};
+}); 
+"use strict";
+
 /**
  * This module serves as the main resource object for our app, i.e.
  * the object which connects to our REST backend and loads/saves data.
@@ -140,9 +217,9 @@ function AppResource() {
 					fn(data);
 				}
 				return {
-					error: function f() {
+					error: function (f) {
 						if (!condition) {
-							f();
+							(f);
 						}
 					}
 				};
@@ -243,27 +320,53 @@ function AppResource() {
 });
 "use strict";
 
-angular.module("project3App").controller("sellersDetailsController", ["$scope", "AppResource", "$routeParams",
-function sellersDetailsController($scope, AppResource, $routeParams) {
+angular.module("project3App").controller("sellersDetailsController", ["$scope", "AppResource", "$routeParams", "ProductDlg",
+function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg) {
     $scope.id = $routeParams.id;
 	$scope.seller = {};
 	$scope.sellerProduct = [];
+    $scope.DisplayAdd = true;
+    $scope.isLoading = true;
+    $scope.selectedProduct = {
+        name: "",
+        price: "",
+        quantitySold: "",
+        quantityInStock: "",
+        imagePath: ""
+    };
 	var sellerID = parseInt($scope.id);
+    
+    function getSelectedProduct() {
+        return $scope.selectedProduct;
+    }
 
 	AppResource.getSellerDetails(sellerID).success(function(seller) {
 		$scope.seller = seller;
-	});
+        $scope.isLoading = false;
+	}).error(function(){
+        $scope.isLoading = false;
+    });
 
 	AppResource.getSellerProducts(sellerID).success(function(sellerProduct)
 	{
 		$scope.sellerProduct = sellerProduct;
-	});
-}
-
-
-
-
-]);
+        $scope.isLoading = false;
+	}).error(function(){
+        $scope.isLoading = false;
+    });
+    
+    $scope.onAddProduct = function onAddProduct(sellerID) {
+        $scope.DisplayAdd = false;
+        ProductDlg.show().then(function(product){
+            AppResource.addSellerProduct(sellerID, product).success(function(product){
+                $scope.DisplayAdd = true;
+            }).error(function(){
+                //TODO
+            });
+        });
+    };
+    
+}]);
 "use strict";
 
 angular.module("project3App").factory("SellerDlg", 

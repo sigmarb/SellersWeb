@@ -5,7 +5,8 @@
 		"price": "verð",
 		"quantitySold": "vörur seldar",
 		"quantityInStock": "vörur á lager",
-		"image": "image"
+		"image": "image",
+		"Add": "Bæta við"
 	},
 	"sellers": {
 		"Title": "Seljendur",
