@@ -55,12 +55,30 @@ function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg)
   		}
 	}
     
-    $scope.onAddProduct = function onAddProduct(sellerID) {
+    $scope.onAddProduct = function onAddProduct() {
+        console.log("HERNA!");
         $scope.DisplayAdd = false;
         ProductDlg.show().then(function(product){
+            console.log("BLA!");
+            console.log(product);
             AppResource.addSellerProduct(sellerID, product).success(function(product){
+                AppResource.getSellerProducts(sellerID).success(function(sellerProduct)
+	{
+		$scope.sellerProduct = sellerProduct;
+		sellerProduct.sort(compare);
+		$scope.sellerTop10Product = sellerProduct.slice(0, 10);
+        $scope.isLoading = false;
+	}).error(function(){
+        $scope.isLoading = false;
+    });
+
+                
+                
+                console.log("HERNAKKKK!");
                 $scope.DisplayAdd = true;
+                $scope.isLoading = false;
             }).error(function(){
+                console.log("ERROIR");
                 //TODO
             });
         });
