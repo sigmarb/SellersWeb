@@ -5,6 +5,7 @@ function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg)
     $scope.id = $routeParams.id;
 	$scope.seller = {};
 	$scope.sellerProduct = [];
+<<<<<<< HEAD
     $scope.DisplayAdd = true;
     $scope.isLoading = true;
     $scope.selectedProduct = {
@@ -14,6 +15,9 @@ function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg)
         quantityInStock: "",
         imagePath: ""
     };
+=======
+	$scope.sellerTop10Product = [];
+>>>>>>> 41400e5b1f6d63778977ff82ed75faf2f5eec400
 	var sellerID = parseInt($scope.id);
     
     function getSelectedProduct() {
@@ -30,6 +34,7 @@ function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg)
 	AppResource.getSellerProducts(sellerID).success(function(sellerProduct)
 	{
 		$scope.sellerProduct = sellerProduct;
+<<<<<<< HEAD
         $scope.isLoading = false;
 	}).error(function(){
         $scope.isLoading = false;
@@ -47,3 +52,28 @@ function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg)
     };
     
 }]);
+=======
+		sellerProduct.sort(compare);
+		$scope.sellerTop10Product = sellerProduct.slice(0, 10);
+	});
+
+	//$scope.sellerTop10Product = $scope.sellerProduct.slice(0,10);
+
+	function compare(a,b) 
+	{
+  		if (a.quantitySold > b.quantitySold) 
+  		{
+    		return -1;
+  		}
+  		else if (a.quantitySold  < b.quantitySold) 
+  		{
+    		return 1;
+  		}
+  		else 
+  		{
+    		return 0;
+  		}
+	}
+}
+]);
+>>>>>>> 41400e5b1f6d63778977ff82ed75faf2f5eec400

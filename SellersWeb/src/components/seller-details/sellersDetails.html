@@ -26,21 +26,53 @@
             <li>
                 <a href ng-click="tab = 2">Top10</a>
             </li>
-            <li>
-                <a href ng-click="tab = 3">hmm</a>
-            </li>
             <br></br>
             <div class="tabStyle" ng-show="tab === 1">
-                <ul ng-repeat="p in sellerProduct">
-                    <li >{{p.name}}</li>
-                    <li >{{p.price}}</li>
-                    <li >{{p.quantitySold}}</li>
-                    <li >{{p.quantityInStock}}</li>
-                    <li><img src="{{p.imagePath}}" alt="error" height="100" width="100"></li>
-                </ul> 
+                <table>
+                    <thead>
+                        <tr table-sort="name">
+                            <th data-columnName="name"><span>name</span></th>
+                            <th data-columnName="price"><span>price</span></th>
+                            <th data-columnName="quantitySold"><span>quantity sold</span></th>
+                            <th data-columnName="quantityInStock"><span>quantity in stock</span></th>
+                            <th><span>image</span></th>
+                        </tr>
+                    </thead>
+                <tbody></tbody>
+                <tr ng-repeat="p in sellerProduct | orderBy:predicate:reverse">
+                    <td >{{p.name}}</td>
+                    <td >{{p.price}}</td>
+                    <td >{{p.quantitySold}}</td>
+                    <td >{{p.quantityInStock}}</td>
+                    <td><img src="{{p.imagePath}}" alt="error" height="100" width="100"></td>
+                </tr> 
+                </tbody>
+                </table>
             </div>
-            <p ng-show="tab === 2"> jakeee </p>
-            <p ng-show="tab === 3"> mafakka </p>
+                <div class="tabStyle" ng-show="tab === 2">
+                    <table>
+                    <thead>
+                        <tr table-sort="name">
+                            <th data-columnName="name"><span>name</span></th>
+                            <th data-columnName="price"><span>price</span></th>
+                            <th data-columnName="quantitySold"><span>quantity sold</span></th>
+                            <th data-columnName="quantityInStock"><span>quantity in stock</span></th>
+                            <th><span>image</span></th>
+                        </tr>
+                    </thead>
+                <tbody></tbody>
+                <tr ng-repeat="p in sellerTop10Product | orderBy:predicate:reverse">
+                    <td >{{p.name}}</td>
+                    <td >{{p.price}}</td>
+                    <td >{{p.quantitySold}}</td>
+                    <td >{{p.quantityInStock}}</td>
+                    <td><img src="{{p.imagePath}}" alt="error" height="100" width="100"></td>
+                </tr> 
+                </tbody>
+                </table>
+
+                </div>
+            </div>
         </ul>
     </section>
 </body>
