@@ -6,6 +6,7 @@
 <i class="fa fa-plus"/>
 <span translate="product.Add"/>
 </button>
+
 <div>
 	<img src="{{seller.imagePath}}" alt="error" height="100" width="100">
 </div>
@@ -45,6 +46,7 @@
                     <td >{{p.quantitySold}}</td>
                     <td >{{p.quantityInStock}}</td>
                     <td><img src="{{p.imagePath}}" alt="error" height="100" width="100"></td>
+                    <td><button class="btn btn-primary" ng-click="onUpdateProduct(p)"><span translate="product.Edit"/></button></td>
                 </tr> 
                 </tbody>
                 </table>
@@ -67,6 +69,7 @@
                     <td >{{p.quantitySold}}</td>
                     <td >{{p.quantityInStock}}</td>
                     <td><img src="{{p.imagePath}}" alt="error" height="100" width="100"></td>
+                    
                 </tr> 
                 </tbody>
                 </table>

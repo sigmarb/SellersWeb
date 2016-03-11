@@ -6,7 +6,8 @@
 		"quantitySold": "quantitySold",
 		"quantityInStock": "quantityInStock",
 		"image": "image",
-		"Add": "Add"
+		"Add": "Add",
+		"Edit": "Edit"
 	},
 	"sellers": {
 		"Title": "Sellers List",
