@@ -7,7 +7,6 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg, $trans
 
 		$scope.isLoading = true;
 		$scope.DisplayAdd = true;
-		$scope.DisplayChange = true;
 		$scope.selectedUser = {
 			name: "",
 			category: "",
@@ -32,12 +31,10 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg, $trans
 		$scope.onAddSeller = function onAddSeller()
 		{
 			$scope.DisplayAdd = false;
-			$scope.DisplayChange = false;
 			SellerDlg.show().then(function(seller){
 					AppResource.addSeller(seller).success(function(seller){
 						//var newSeller = seller;
 						$scope.DisplayAdd = true;
-						$scope.DisplayChange = true;
 					}).error(function() {
 							//TODO:
 							centrisNotify.error("sellers.Messages.SaveFailed");
@@ -49,12 +46,10 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg, $trans
 		$scope.onEditSeller = function onEditSeller(sellerId)
 		{
 			$scope.DisplayAdd = false;
-			$scope.DisplayChange = false;
 			SellerDlg.show().then(function(seller){
 					AppResource.updateSeller(sellerId,seller).success(function(seller){
 						//var newSeller = seller;
 						$scope.DisplayAdd = true;
-						$scope.DisplayChange = true;
 					}).error(function() {
 							//TODO:
 							centrisNotify.error("sellers.Messages.EditUserFailed");

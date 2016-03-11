@@ -1,4 +1,13 @@
 {
+	"product": {
+		"id": "id",
+		"name": "nafn",
+		"price": "verð",
+		"quantitySold": "vörur seldar",
+		"quantityInStock": "vörur á lager",
+		"image": "image",
+		"Add": "Bæta við"
+	},
 	"sellers": {
 		"Title": "Seljendur",
 		"Name": "Nafn",
@@ -16,14 +25,5 @@
 			"NoName": "Vinsamlegast fylltu inn nafn",
 			"EditUserFailed": "Því miður tókst ekki að uppfæra notandann"
 		}
-	},
-	"product": {
-		"id": "id",
-		"name": "nafn",
-		"price": "verð",
-		"quantitySold": "vörur seldar",
-		"quantityInStock": "vörur á lager",
-		"image": "image",
-		"Add": "Bæta við"
 	}
 }

@@ -375,12 +375,30 @@ function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg)
   		}
 	}
     
-    $scope.onAddProduct = function onAddProduct(sellerID) {
+    $scope.onAddProduct = function onAddProduct() {
+        console.log("HERNA!");
         $scope.DisplayAdd = false;
         ProductDlg.show().then(function(product){
+            console.log("BLA!");
+            console.log(product);
             AppResource.addSellerProduct(sellerID, product).success(function(product){
+                AppResource.getSellerProducts(sellerID).success(function(sellerProduct)
+	{
+		$scope.sellerProduct = sellerProduct;
+		sellerProduct.sort(compare);
+		$scope.sellerTop10Product = sellerProduct.slice(0, 10);
+        $scope.isLoading = false;
+	}).error(function(){
+        $scope.isLoading = false;
+    });
+
+                
+                
+                console.log("HERNAKKKK!");
                 $scope.DisplayAdd = true;
+                $scope.isLoading = false;
             }).error(function(){
+                console.log("ERROIR");
                 //TODO
             });
         });
@@ -457,7 +475,6 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg, $trans
 
 		$scope.isLoading = true;
 		$scope.DisplayAdd = true;
-		$scope.DisplayChange = true;
 		$scope.selectedUser = {
 			name: "",
 			category: "",
@@ -482,12 +499,10 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg, $trans
 		$scope.onAddSeller = function onAddSeller()
 		{
 			$scope.DisplayAdd = false;
-			$scope.DisplayChange = false;
 			SellerDlg.show().then(function(seller){
 					AppResource.addSeller(seller).success(function(seller){
 						//var newSeller = seller;
 						$scope.DisplayAdd = true;
-						$scope.DisplayChange = true;
 					}).error(function() {
 							//TODO:
 							centrisNotify.error("sellers.Messages.SaveFailed");
@@ -499,12 +514,10 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg, $trans
 		$scope.onEditSeller = function onEditSeller(sellerId)
 		{
 			$scope.DisplayAdd = false;
-			$scope.DisplayChange = false;
 			SellerDlg.show().then(function(seller){
 					AppResource.updateSeller(sellerId,seller).success(function(seller){
 						//var newSeller = seller;
 						$scope.DisplayAdd = true;
-						$scope.DisplayChange = true;
 					}).error(function() {
 							//TODO:
 							centrisNotify.error("sellers.Messages.EditUserFailed");
