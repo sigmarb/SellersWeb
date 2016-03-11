@@ -5,7 +5,8 @@
 		"price": "price",
 		"quantitySold": "quantitySold",
 		"quantityInStock": "quantityInStock",
-		"image": "image"
+		"image": "image",
+		"Add": "Add"
 	},
 	"sellers": {
 		"Title": "Sellers List",

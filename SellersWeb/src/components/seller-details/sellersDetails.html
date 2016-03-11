@@ -1,5 +1,11 @@
-<h1>HALLO</h1>
-<h3>okzzzz</h3>
+<div ng-show="isLoading">
+	<loading-message></loading-message>
+</div>
+<div ng-hide="isLoading">
+	<button class="btn btn-primary" ng-click="onAddProduct()">
+<i class="fa fa-plus"/>
+<span translate="product.Add"/>
+</button>
 <div>
 	<img src="{{seller.imagePath}}" alt="error" height="100" width="100">
 </div>
