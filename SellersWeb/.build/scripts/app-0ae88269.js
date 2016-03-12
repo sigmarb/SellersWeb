@@ -409,7 +409,7 @@ function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg)
 "use strict";
 
 angular.module("project3App").controller("SellerDlgController",
-function SellerDlgController($scope, centrisNotify) {
+function SellerDlgController($scope, centrisNotify, $translate) {
 
 	$scope.seller = {
 		name: "",
@@ -448,7 +448,6 @@ function SellerDlgController($scope, centrisNotify) {
 
 	$scope.onCancel = function onCancel(){
 		$scope.$dismiss();
-		//lol
 	};
 }); 
 "use strict";
@@ -470,7 +469,7 @@ angular.module("project3App").factory("SellerDlg",
 "use strict";
 
 angular.module("project3App").controller("SellersController",
-function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
+function SellersController($scope, AppResource, centrisNotify, SellerDlg, $translate) {
 	// TODO: load data from AppResource! Also, add other methods, such as to
 	// add/update sellers etc.
 
@@ -526,7 +525,10 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg) {
 			});
 		};
 
-		
+		$scope.changeLanguage = function changeLanguage(key){
+
+			$translate.use(key);
+		};
 });
 "use strict";
 
