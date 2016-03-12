@@ -2,3 +2,27 @@
 .Sellers {
   /* TODO: add any Sellers-specific styles here! */
 }
+
+.sellerTable
+{
+	
+}
+
+.row-centered 
+{
+    text-align:center;
+    margin-top: 10%;
+}
+
+.col-centered 
+{
+    display:inline-block;
+    float:none;
+    text-align:left;
+    margin-right:-4px;
+}
+
+th, td {
+    padding: 3%;
+    text-align: left;
+}
