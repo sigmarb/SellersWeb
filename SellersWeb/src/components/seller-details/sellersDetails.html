@@ -1,3 +1,4 @@
+<body>
 <div ng-show="isLoading">
 	<loading-message></loading-message>
 </div>
@@ -6,8 +7,9 @@
 <i class="fa fa-plus"/>
 <span translate="product.Add"/>
 </button>
+
 <div>
-	<img src="{{seller.imagePath}}" alt="error" height="100" width="100">
+	<img src="{{seller.imagePath}}" alt="error" class="img-rounded" height="100" width="100">
 </div>
 <div>
 	{{seller.name}}
@@ -15,9 +17,6 @@
 <div>
 	{{seller.category}}
 </div>
-
-</head>
-<body>
     <section>
         <ul ng-init="tab = 1">
             <li>
@@ -27,7 +26,7 @@
                 <a href ng-click="tab = 2">Top10</a>
             </li>
             <br></br>
-            <div class="tabStyle" ng-show="tab === 1">
+            <div class="tabStyle" ng-show="tab === 1" class="table-responsive">
                 <table>
                     <thead>
                         <tr table-sort="name">
@@ -44,7 +43,8 @@
                     <td >{{p.price}}</td>
                     <td >{{p.quantitySold}}</td>
                     <td >{{p.quantityInStock}}</td>
-                    <td><img src="{{p.imagePath}}" alt="error" height="100" width="100"></td>
+                    <td><img src="{{p.imagePath}}" alt="error" class="img-rounded" height="100" width="100"></td>
+                    <td><button class="btn btn-primary" ng-click="onUpdateProduct(p)"><span translate="product.Edit"/></button></td>
                 </tr> 
                 </tbody>
                 </table>
@@ -66,7 +66,8 @@
                     <td >{{p.price}}</td>
                     <td >{{p.quantitySold}}</td>
                     <td >{{p.quantityInStock}}</td>
-                    <td><img src="{{p.imagePath}}" alt="error" height="100" width="100"></td>
+                    <td><img src="{{p.imagePath}}" alt="error" height="100" class="img-rounded" width="100"></td>
+                    
                 </tr> 
                 </tbody>
                 </table>

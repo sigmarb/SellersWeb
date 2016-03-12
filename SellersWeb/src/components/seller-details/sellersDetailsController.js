@@ -71,17 +71,25 @@ function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg)
 	}).error(function(){
         $scope.isLoading = false;
     });
-
-                
-                
-                console.log("HERNAKKKK!");
-                $scope.DisplayAdd = true;
-                $scope.isLoading = false;
-            }).error(function(){
+        
+        $scope.DisplayAdd = true;
+        $scope.isLoading = false;
+     }).error(function(){
                 console.log("ERROIR");
                 //TODO
             });
         });
+    };
+    
+    $scope.onUpdateProduct = function onUpdateProduct(productID) {
+        console.log(productID);
+        ProductDlg.show().then(function(product){
+            console.log(product);
+            AppResource.updateSellerProduct(productID.id, product).success(function(product) {
+         console.log("HER" + product);
+	}).error(function(){
+            });
+       });
     };
     
 }]);
