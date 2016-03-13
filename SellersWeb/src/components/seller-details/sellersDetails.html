@@ -16,9 +16,12 @@
 	<span>{{seller.category}}</span>
 </div>
     <section class="table-responsive col-md-12 row-centeredSD">
-        <ul ng-init="tab = 1">
-                <a href ng-click="tab = 1">All products</a>
+    <div class="topten col-md-12 row-centered">
+            <ul ng-init="tab = 1">
+                <a href ng-click="tab = 1" >All products</a>
                 <a href ng-click="tab = 2">Top10</a>
+    </div>
+
             <br></br>
             <div class="tabStyle" ng-show="tab === 1" class="table-responsive">
                 <table class="sellerTable col-centered">
@@ -43,24 +46,27 @@
                 </tbody>
                 </table>
             </div>
-                <div class="tabStyle" ng-show="tab === 2">
-                    <table>
+                <div class="tabStyle" ng-show="tab === 2" class="table-responsive">
+                    <table class="sellerTable col-centered">
                     <thead>
-                        <tr table-sort="name">
+                            
+                            <tr table-sort="name">
+                            <th><span></span></th>
                             <th data-columnName="name"><span>name</span></th>
                             <th data-columnName="price"><span>price</span></th>
                             <th data-columnName="quantitySold"><span>quantity sold</span></th>
                             <th data-columnName="quantityInStock"><span>quantity in stock</span></th>
-                            <th><span>image</span></th>
+                            
                         </tr>
                     </thead>
                 <tbody></tbody>
                 <tr ng-repeat="p in sellerTop10Product | orderBy:predicate:reverse">
+                    <td><img src="{{p.imagePath}}" alt="error" height="100" class="img-rounded" width="100"></td>
                     <td >{{p.name}}</td>
                     <td >{{p.price}}</td>
                     <td >{{p.quantitySold}}</td>
                     <td >{{p.quantityInStock}}</td>
-                    <td><img src="{{p.imagePath}}" alt="error" height="100" class="img-rounded" width="100"></td>
+                    <td><button class="btn btn-primary" ng-click="onUpdateProduct(p)"><span translate="product.Edit"/></button></td>
                 </tr> 
                 </tbody>
                 </table>

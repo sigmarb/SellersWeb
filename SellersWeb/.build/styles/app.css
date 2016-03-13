@@ -1,3 +1,7 @@
+h2 {
+  text-align: center;
+  color: white;
+}
 
 .Sellers {
   /* TODO: add any Sellers-specific styles here! */
@@ -5,6 +9,9 @@
 .row-centered {
   text-align: center;
   margin-top: 2%;
+}
+.row-centeredSD {
+  text-align: center;
 }
 .col-centered {
   display: inline-block;
@@ -14,16 +21,26 @@
 }
 th,
 td {
-  padding: 4%;
   text-align: left;
   color: white;
+  padding-top: 2%;
+}
+td {
+  width: 15%;
+}
+th {
+  width: 15%;
 }
 a {
   color: white;
-  padding: 3%;
 }
 span {
   color: white;
+}
+.topten {
+  border-bottom-color: white;
+  border-bottom-style: solid;
+  border-bottom-style: thin;
 }
 button {
   font-color: white;
@@ -35,4 +52,5 @@ body {
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
+  font-family: futura;
 }
