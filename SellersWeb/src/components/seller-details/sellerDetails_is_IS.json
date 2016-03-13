@@ -1,12 +1,14 @@
 {
-	"product" : {
-		"id":						"id",
-		"name":						"nafn",
-		"price":					"verð",
-		"quantitySold":				"vörur seldar",
-		"quantityInStock":			"vörur á lager",
-		"image":					"image",
+	"sellerDetails" : {
+		"Id":						"id",
+		"Name":						"nafn",
+		"Price":					"verð",
+		"QuantitySold":				"vörur seldar",
+		"QuantityInStock":			"vörur á lager",
+		"Image":					"image",
         "Add":                      "Bæta við",
-        "Edit":                     "Breyta"
+        "Edit":                     "Breyta",
+        "AllProducts":				"Allar Vörur",
+        "TopTen":					"Topp 10"
 	}
 }

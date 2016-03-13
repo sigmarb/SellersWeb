@@ -1,13 +1,15 @@
 {
-	"product": {
-		"id": "id",
-		"name": "name",
-		"price": "price",
-		"quantitySold": "quantitySold",
-		"quantityInStock": "quantityInStock",
-		"image": "image",
+	"sellerDetails": {
+		"Id": "id",
+		"Name": "name",
+		"Price": "price",
+		"QuantitySold": "quantitySold",
+		"QuantityInStock": "quantityInStock",
+		"Image": "image",
 		"Add": "Add",
-		"Edit": "Edit"
+		"Edit": "Edit",
+		"AllProducts": "All products",
+		"TopTen": "Top 10"
 	},
 	"sellers": {
 		"Title": "Sellers List",
