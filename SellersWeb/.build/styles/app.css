@@ -34,6 +34,14 @@ th {
 a {
   color: white;
 }
+.allprod {
+  border-right-style: solid;
+  border-width: thin;
+  padding-right: 2%;
+}
+.top10 {
+  padding-left: 2%;
+}
 span {
   color: white;
 }
