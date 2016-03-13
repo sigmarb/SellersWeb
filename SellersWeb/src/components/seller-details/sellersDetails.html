@@ -25,6 +25,9 @@
     </div>
 
             <br></br>
+            <div class="col-md-12 row-centered">
+                <input type="text" ng-model="searchBox">
+            </div>
             <div class="tabStyle" ng-show="tab === 1" class="table-responsive">
                 <table class="sellerTable col-centered">
                     <thead>
@@ -37,7 +40,7 @@
                         </tr>
                     </thead>
                 <tbody></tbody>
-                <tr ng-repeat="p in sellerProduct | orderBy:predicate:reverse">
+                <tr ng-repeat="p in sellerProduct | orderBy:predicate:reverse | filter: searchBox">
                     <td><img src="{{p.imagePath}}" alt="error" class="img-rounded" height="100" width="100"></td>
                     <td >{{p.name}}</td>
                     <td >{{p.price}}</td>
@@ -62,7 +65,7 @@
                         </tr>
                     </thead>
                 <tbody></tbody>
-                <tr ng-repeat="p in sellerTop10Product | orderBy:predicate:reverse">
+                <tr ng-repeat="p in sellerTop10Product | orderBy:predicate:reverse | filter: searchBox">
                     <td><img src="{{p.imagePath}}" alt="error" height="100" class="img-rounded" width="100"></td>
                     <td >{{p.name}}</td>
                     <td >{{p.price}}</td>

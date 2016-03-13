@@ -20,6 +20,9 @@
 	</div>
 </div>
 <div >
+<div class="col-md-12 row-centered">
+                <input type="text" ng-model="searchBox">
+            </div>
 	<div class="table-responsive col-md-12 row-centered">
 			<table class="sellerTable col-centered">
 				<thead>
@@ -39,7 +42,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="s in sellers | orderBy:predicate:reverse">
+					<tr ng-repeat="s in sellers | orderBy:predicate:reverse | filter: searchBox">
 						
 						<td class="sellersTD"><img src="{{s.imagePath}}" alt="error" class="img-rounded" height="100" width="100"></td>
 						<td class="sellersTD"><a ng-href="#/seller/{{s.id}}">{{s.name}}</a></td>
