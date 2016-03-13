@@ -6,7 +6,7 @@
         "Edit":						 "Breyta",
 		"Category":					 "Flokkur",
         "Image":                     "Mynd",
-        "Ok":						 "Ok",
+        "Ok":						 "Í lagi",
         "Cancel":					 "Hætta við",
         "Failed":                    "Villa",
 		"Messages" : {
@@ -14,6 +14,8 @@
 			"SaveSucceeded":         "Nýjum seljanda hefur verið bætt við",
 			"SaveFailed":            "Því miður tókst ekki að bæta við nýjum seljanda",
             "NoName":                "Vinsamlegast fylltu inn nafn",
+            "NoCategory":            "Vinsamlegast fylltu inn flokk",
+            "NoImage":               "Vinsamlegast settu inn slóð á mynd",
             "EditUserFailed":		 "Því miður tókst ekki að uppfæra notandann",
             "EditUserSucceeded":     "Selandinn hefur verið uppfærður"
 		}

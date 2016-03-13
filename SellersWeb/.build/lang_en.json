@@ -9,7 +9,22 @@
 		"Add": "Add",
 		"Edit": "Edit",
 		"AllProducts": "All products",
-		"TopTen": "Top 10"
+		"TopTen": "Top 10",
+		"Failed": "Failed",
+		"Ok": "Ok",
+		"Cancel": "Cancel",
+		"Messages": {
+			"LoadFailed": "Failed to load the list of sellers",
+			"SaveSucceeded": "The product has been added successfully",
+			"SaveFailed": "Unfortunately we could not add a new product",
+			"NoName": "Please fill in a name",
+			"NoPrice": "Please fill in the price",
+			"NoQuantitySold": "Please fill in quantity sold",
+			"NoQuantityInStock": "Please fill in quantity in stock",
+			"NoImage": "Please add a photo url",
+			"EditProductFailed": "Unfortunately we could not update this product",
+			"EditProductSucceeded": "The product has been edited successfully"
+		}
 	},
 	"sellers": {
 		"Title": "Sellers List",
@@ -25,6 +40,8 @@
 			"SaveSucceeded": "The seller has been added successfully",
 			"SaveFailed": "Unfortunately we could not add a new seller",
 			"NoName": "Please fill in a name",
+			"NoCategory": "Please fill in category",
+			"NoImage": "Please add a photo url",
 			"EditUserFailed": "Unfortunately we could not update this user",
 			"EditUserSucceeded": "The seller has been edited successfully"
 		}
