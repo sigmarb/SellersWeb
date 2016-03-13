@@ -6,6 +6,12 @@
 	<button ng-click="changeLanguage('IS')" class="btn btn-primary">Icelandic</button>
 	<button ng-click="changeLanguage('EN') " class="btn btn-primary">English</button>
 </div>
+<div class="col-md-12 row-centered topten marginbot">
+	<button class="btn btn-primary" ng-click="onAddSeller()" ng-show="DisplayAdd">
+								<i class="fa fa-plus"/>
+								<span translate="sellers.Add"/>
+	</button>
+</div>
 <div>
 	<div ng-show="isLoading">
 		<loading-message></loading-message>
@@ -29,20 +35,16 @@
 							<span translate="sellers.Category"/>
 						</th>
 						<th>
-							<button class="btn btn-primary" ng-click="onAddSeller()" ng-show="DisplayAdd">
-								<i class="fa fa-plus"/>
-								<span translate="sellers.Add"/>
-							</button>
 						</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="s in sellers | orderBy:predicate:reverse">
 						
-						<td class="tdd"><img src="{{s.imagePath}}" alt="error" class="img-rounded" height="100" width="100"></td>
-						<td class="tdd"><a ng-href="#/seller/{{s.id}}">{{s.name}}</a></td>
-						<td class="tdd">{{s.category}}</td>
-						<td class="tdd"><button data="{{s.id}}" class="btn btn-primary" ng-click="onEditSeller(s.id)" ng-show="DisplayAdd"><span translate="sellers.Edit"/></button></td>
+						<td class="sellersTD"><img src="{{s.imagePath}}" alt="error" class="img-rounded" height="100" width="100"></td>
+						<td class="sellersTD"><a ng-href="#/seller/{{s.id}}">{{s.name}}</a></td>
+						<td class="sellersTD">{{s.category}}</td>
+						<td class="sellersTD"><button data="{{s.id}}" class="btn btn-primary" ng-click="onEditSeller(s.id)" ng-show="DisplayAdd"><span translate="sellers.Edit"/></button></td>
 					</tr>
 				</tbody>
 		</table>

@@ -7,17 +7,15 @@
         <button ng-click="changeLanguage('IS')" class="btn btn-primary">Icelandic</button>
         <button ng-click="changeLanguage('EN') " class="btn btn-primary">English</button>
 </div>
-
-<div>
-	<img src="{{seller.imagePath}}" alt="error" class="img-rounded" height="100" width="100">
-	<span>{{seller.name}}</span>
-	<span>{{seller.category}}</span>
-</div>
 <div class="col-md-12 row-centered">
     <button class="btn btn-primary" ng-click="onAddProduct()">
     <i class="fa fa-plus"/>
     <span translate="sellerDetails.Add"/>
     </button>
+</div>
+<div class="col-md-12 row-centered">
+    <img src="{{seller.imagePath}}" alt="error" class="img-rounded" height="100" width="100">
+    <span>{{seller.name}}</span>
 </div>
     <section class="table-responsive col-md-12 row-centeredSD">
     <div class="topten col-md-12 row-centered">
