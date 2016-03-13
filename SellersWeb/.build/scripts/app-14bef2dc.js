@@ -520,11 +520,12 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg, $trans
 			$scope.DisplayAdd = false;
 			SellerDlg.show().then(function(seller){
 					AppResource.addSeller(seller).success(function(seller){
-						//var newSeller = seller;
+						
 						$scope.DisplayAdd = true;
+                        centrisNotify.success("sellers.Messages.SaveSucceeded", "sellers.Ok");
 					}).error(function() {
 							//TODO:
-							centrisNotify.error("sellers.Messages.SaveFailed");
+							centrisNotify.error("sellers.Messages.SaveFailed", "sellers.Failed");
 				});
 			});
 
@@ -537,9 +538,10 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg, $trans
 					AppResource.updateSeller(sellerId,seller).success(function(seller){
 						//var newSeller = seller;
 						$scope.DisplayAdd = true;
+                        centrisNotify.success("sellers.Messages.EditUserSucceeded", "sellers.Ok");
 					}).error(function() {
 							//TODO:
-							centrisNotify.error("sellers.Messages.EditUserFailed");
+							centrisNotify.error("sellers.Messages.EditUserFailed", "sellers.Failed");
 				});
 			});
 		};
