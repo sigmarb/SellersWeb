@@ -7,43 +7,37 @@
 <i class="fa fa-plus"/>
 <span translate="product.Add"/>
 </button>
+<button ng-click="changeLanguage('IS')" class="btn btn-primary">Change to Icelandic</button>
+    <button ng-click="changeLanguage('EN') " class="btn btn-primary">Change to English</button>
 
 <div>
 	<img src="{{seller.imagePath}}" alt="error" class="img-rounded" height="100" width="100">
+	<span>{{seller.name}}</span>
+	<span>{{seller.category}}</span>
 </div>
-<div>
-	{{seller.name}}
-</div>
-<div>
-	{{seller.category}}
-</div>
-    <section>
+    <section class="table-responsive col-md-12 row-centeredSD">
         <ul ng-init="tab = 1">
-            <li>
                 <a href ng-click="tab = 1">All products</a>
-            </li>
-            <li>
                 <a href ng-click="tab = 2">Top10</a>
-            </li>
             <br></br>
             <div class="tabStyle" ng-show="tab === 1" class="table-responsive">
-                <table>
+                <table class="sellerTable col-centered">
                     <thead>
                         <tr table-sort="name">
+                            <th></th>
                             <th data-columnName="name"><span>name</span></th>
                             <th data-columnName="price"><span>price</span></th>
                             <th data-columnName="quantitySold"><span>quantity sold</span></th>
                             <th data-columnName="quantityInStock"><span>quantity in stock</span></th>
-                            <th><span>image</span></th>
                         </tr>
                     </thead>
                 <tbody></tbody>
                 <tr ng-repeat="p in sellerProduct | orderBy:predicate:reverse">
+                    <td><img src="{{p.imagePath}}" alt="error" class="img-rounded" height="100" width="100"></td>
                     <td >{{p.name}}</td>
                     <td >{{p.price}}</td>
                     <td >{{p.quantitySold}}</td>
                     <td >{{p.quantityInStock}}</td>
-                    <td><img src="{{p.imagePath}}" alt="error" class="img-rounded" height="100" width="100"></td>
                     <td><button class="btn btn-primary" ng-click="onUpdateProduct(p)"><span translate="product.Edit"/></button></td>
                 </tr> 
                 </tbody>

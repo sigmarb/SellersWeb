@@ -11,7 +11,12 @@
 .row-centered 
 {
     text-align:center;
-    margin-top: 10%;
+    margin-top: 6%;
+}
+
+.row-centeredSD
+{
+    text-align:center;
 }
 
 .col-centered 
@@ -23,6 +28,34 @@
 }
 
 th, td {
-    padding: 3%;
+    padding: 4%;
     text-align: left;
+    color: white;
+}
+
+a
+{
+	color: white;
+	padding: 3%;
+}
+
+
+span
+{
+	color: white;
+}
+
+button
+{
+	font-color:white;
+	background: none;
+}
+
+body
+{
+	background-image: url("http://www.carbisbayhotel.co.uk/images/hero/coastal-properties-1.jpg");
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+    background-size: cover;
 }

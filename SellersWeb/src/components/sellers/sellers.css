@@ -2,3 +2,55 @@
 {
 	margin-left: 1%;
 }
+
+
+.Sellers {
+  /* TODO: add any Sellers-specific styles here! */
+}
+
+.row-centered 
+{
+    text-align:center;
+    margin-top: 6%;
+}
+
+.col-centered 
+{
+    display:inline-block;
+    float:none;
+    text-align:left;
+    margin-right:-4px;
+}
+
+th, td {
+    padding: 3%;
+    text-align: left;
+    color: white;
+}
+
+a
+{
+	color: white;
+	padding: 3%;
+}
+
+
+span
+{
+	color: white;
+}
+
+button
+{
+	font-color:white;
+	background: none;
+}
+
+body
+{
+	background-image: url("http://www.carbisbayhotel.co.uk/images/hero/coastal-properties-1.jpg");
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+    background-size: cover;
+}

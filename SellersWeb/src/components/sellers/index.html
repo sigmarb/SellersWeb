@@ -1,7 +1,7 @@
 <body>
 <button ng-click="changeLanguage('IS')" class="btn btn-primary">Change to Icelandic</button>
 	<button ng-click="changeLanguage('EN') " class="btn btn-primary">Change to English</button>
-<div class="col-md-2">
+<div>
 	<div ng-show="isLoading">
 		<loading-message></loading-message>
 	</div>
@@ -12,11 +12,14 @@
 		</button>
 	</div>
 </div>
-<div mid>
+<div >
 	<div class="table-responsive col-md-12 row-centered">
 			<table class="sellerTable col-centered">
 				<thead>
 					<tr table-sort="name">
+					<th class="th">
+						
+						</th>
 						<th class="th" data-columnName="name">
 						<i class="fa fa-plus"/>
 							<span translate="sellers.Name" ng-mouseover="sellers.Name"/>
@@ -24,17 +27,20 @@
 						<th class="th" data-columnName="category">
 							<span translate="sellers.Category"/>
 						</th>
-						<th class="th">
-							<span translate="sellers.Image"/>
+						<th>
+							<button class="btn btn-primary" ng-click="onAddSeller()" ng-show="DisplayAdd">
+								<i class="fa fa-plus"/>
+								<span translate="sellers.Add"/>
+							</button>
 						</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="s in sellers | orderBy:predicate:reverse">
 						
+						<td class="tdd"><img src="{{s.imagePath}}" alt="error" class="img-rounded" height="100" width="100"></td>s
 						<td class="tdd"><a ng-href="#/seller/{{s.id}}">{{s.name}}</a></td>
 						<td class="tdd">{{s.category}}</td>
-						<td class="tdd"><img src="{{s.imagePath}}" alt="error" class="img-rounded" height="100" width="100"></td>
 						<td class="tdd"><button data="{{s.id}}" class="btn btn-primary" ng-click="onEditSeller(s.id)" ng-show="DisplayAdd"><span translate="sellers.Edit"/></button></td>
 					</tr>
 				</tbody>
@@ -42,7 +48,7 @@
 	</div>
 </div>
 
-<div right>
+<div>
 	
 </div>
 
