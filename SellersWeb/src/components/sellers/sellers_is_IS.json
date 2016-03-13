@@ -14,7 +14,8 @@
 			"SaveSucceeded":         "Nýjum seljanda hefur verið bætt við",
 			"SaveFailed":            "Því miður tókst ekki að bæta við nýjum seljanda",
             "NoName":                "Vinsamlegast fylltu inn nafn",
-            "EditUserFailed":		 "Því miður tókst ekki að uppfæra notandann"
+            "EditUserFailed":		 "Því miður tókst ekki að uppfæra notandann",
+            "EditUserSucceeded":     "Selandinn hefur verið uppfærður"
 		}
 	}
 }

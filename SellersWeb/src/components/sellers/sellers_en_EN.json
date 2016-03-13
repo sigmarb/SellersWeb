@@ -13,7 +13,8 @@
 			"SaveSucceeded":         "The seller has been added successfully",
 			"SaveFailed":            "Unfortunately we could not add a new seller",
             "NoName":                "Please fill in a name",
-            "EditUserFailed":		 "Unfortunately we could not update this user"
+            "EditUserFailed":		 "Unfortunately we could not update this user",
+            "EditUserSucceeded":     "The seller has been edited successfully"
 		}
 	}
 }
