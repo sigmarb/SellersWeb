@@ -21,34 +21,28 @@ function ProductDlgController($scope, centrisNotify) {
     };
     
 	$scope.onOk = function onOk(){
-		//TODO: VALIDATION
 		if ($scope.product.name.length === 0) {
-			//$scope.errorMessage = "Invalid name!";
-            centrisNotify.error("sellers.Messages.NoName", "sellers.Failed");
+            centrisNotify.error("sellerDetails.Messages.NoName", "sellerDetails.Failed");
             return;
 		}
         
         if ($scope.product.price.length === 0) {
-            //$scope.errorMessage = "Invalid category!";
-            centrisNotify.error("Invalid category!");
+            centrisNotify.error("sellerDetails.Messages.NoPrice", "sellerDetails.Failed");
             return;
         }
         
         if ($scope.product.quantitySold.length === 0) {
-            //$scope.errorMessage = "Invalid category!";
-            centrisNotify.error("Invalid category!");
+            centrisNotify.error("sellerDetails.Messages.NoQuantitySold", "sellerDetails.Failed");
             return;
         }
         
         if ($scope.product.quantityInStock.length === 0) {
-            //$scope.errorMessage = "Invalid category!";
-            centrisNotify.error("Invalid category!");
+            centrisNotify.error("sellerDetails.Messages.NoQuantityInStock", "sellerDetails.Failed");
             return;
         }
         
         if ($scope.product.imagePath.length === 0) {
-            //$scope.errorMessage = "Invalid image url!";
-            centrisNotify.error("Invalid image url!");
+            centrisNotify.error("sellerDetails.Messages.NoImage", "sellerDetails.Failed");
             return;
         }
 		$scope.$close($scope.product);
@@ -56,6 +50,5 @@ function ProductDlgController($scope, centrisNotify) {
 
 	$scope.onCancel = function onCancel(){
 		$scope.$dismiss();
-		//lol
 	};
 }); 

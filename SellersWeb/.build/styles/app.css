@@ -51,6 +51,9 @@ a {
 span {
   color: white;
 }
+.blackspan {
+  color: black;
+}
 .topten {
   border-bottom-color: white;
   border-bottom-style: solid;
@@ -60,8 +63,11 @@ button {
   font-color: white;
   background: none;
 }
+h2 {
+  color: black;
+}
 body {
-  background-image: url("http://highlighthollywood.com/wp-content/uploads/2015/12/nicholascage.jpg");
+  background-color: lightgrey;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;

@@ -1,0 +1,10 @@
+{
+	"sellerDialog" : {
+		"Name":						"Name",
+		"Price":					"Price",
+		"QuantitySold":				"Quantity sold",
+		"QuantityInStock":			"Quantity in stock",
+		"Image":					"Image",
+        "Category":                 "Category"
+	}
+}

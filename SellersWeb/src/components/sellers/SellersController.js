@@ -6,7 +6,6 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg, $trans
 	// add/update sellers etc.
 
 		$scope.isLoading = true;
-		$scope.DisplayAdd = true;
 		$scope.selectedUser = {
 			name: "",
 			category: "",
@@ -22,6 +21,7 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg, $trans
 			$scope.isLoading = false;
 		}).error(function(){
 			$scope.isLoading = false;
+            centrisNotify.error("sellers.Messages.LoadFailed", "sellers.Failed");
 		});
 
 		function getSelectedUser(){
@@ -30,14 +30,10 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg, $trans
 
 		$scope.onAddSeller = function onAddSeller()
 		{
-			$scope.DisplayAdd = false;
 			SellerDlg.show().then(function(seller){
 					AppResource.addSeller(seller).success(function(seller){
-						
-						$scope.DisplayAdd = true;
                         centrisNotify.success("sellers.Messages.SaveSucceeded", "sellers.Ok");
 					}).error(function() {
-							//TODO:
 							centrisNotify.error("sellers.Messages.SaveFailed", "sellers.Failed");
 				});
 			});
@@ -46,21 +42,16 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg, $trans
 
 		$scope.onEditSeller = function onEditSeller(sellerId)
 		{
-			$scope.DisplayAdd = false;
 			SellerDlg.show().then(function(seller){
 					AppResource.updateSeller(sellerId,seller).success(function(seller){
-						//var newSeller = seller;
-						$scope.DisplayAdd = true;
                         centrisNotify.success("sellers.Messages.EditUserSucceeded", "sellers.Ok");
 					}).error(function() {
-							//TODO:
 							centrisNotify.error("sellers.Messages.EditUserFailed", "sellers.Failed");
 				});
 			});
 		};
 
 		$scope.changeLanguage = function changeLanguage(key){
-
 			$translate.use(key);
 		};
 });

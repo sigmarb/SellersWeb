@@ -1,7 +1,7 @@
 "use strict";
 
-angular.module("project3App").controller("sellersDetailsController", ["$scope", "AppResource", "$routeParams", "ProductDlg",
-function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg) {
+angular.module("project3App").controller("sellersDetailsController", ["$scope", "AppResource", "$routeParams", "ProductDlg", "centrisNotify", "$translate",
+function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg, centrisNotify, $translate) {
     $scope.id = $routeParams.id;
 	$scope.seller = {};
 	$scope.sellerProduct = [];
@@ -15,6 +15,11 @@ function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg)
         quantityInStock: "",
         imagePath: ""
     };
+
+    $scope.changeLanguage = function changeLanguage(key){
+        $translate.use(key);
+    };
+
 	$scope.sellerTop10Product = [];
 	var sellerID = parseInt($scope.id);
     
@@ -27,6 +32,7 @@ function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg)
         $scope.isLoading = false;
 	}).error(function(){
         $scope.isLoading = false;
+        centrisNotify.error("sellers.Messages.LoadFailed", "sellers.Failed");
     });
 
 	AppResource.getSellerProducts(sellerID).success(function(sellerProduct)
@@ -37,6 +43,7 @@ function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg)
         $scope.isLoading = false;
 	}).error(function(){
         $scope.isLoading = false;
+        centrisNotify.error("sellerDetails.Messages.LoadFailed", "sellerDetails.Failed");
     });
 
     	function compare(a,b) 
@@ -71,23 +78,20 @@ function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg)
 	}).error(function(){
         $scope.isLoading = false;
     });
-        
-        $scope.DisplayAdd = true;
         $scope.isLoading = false;
+        centrisNotify.success("sellerDetails.Messages.SaveSucceeded", "sellerDetails.Ok");
      }).error(function(){
-                console.log("ERROIR");
-                //TODO
+                centrisNotify.error("sellerDetails.Messages.SaveFailed", "sellerDetails.Failed");
             });
         });
     };
     
     $scope.onUpdateProduct = function onUpdateProduct(productID) {
-        console.log(productID);
         ProductDlg.show().then(function(product){
-            console.log(product);
             AppResource.updateSellerProduct(productID.id, product).success(function(product) {
-         console.log("HER" + product);
+                centrisNotify.success("sellerDetails.Messages.EditProductSucceeded", "sellerDetails.Ok");
 	}).error(function(){
+                centrisNotify.error("sellerDetails.Messages.EditProductFailed", "sellerDetails.Failed");
             });
        });
     };

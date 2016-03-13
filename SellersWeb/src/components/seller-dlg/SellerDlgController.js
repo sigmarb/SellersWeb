@@ -17,22 +17,18 @@ function SellerDlgController($scope, centrisNotify, $translate) {
     };
     
 	$scope.onOk = function onOk(){
-		//TODO: VALIDATION
 		if ($scope.seller.name.length === 0) {
-			//$scope.errorMessage = "Invalid name!";
             centrisNotify.error("sellers.Messages.NoName", "sellers.Failed");
             return;
 		}
         
         if ($scope.seller.category.length === 0) {
-            //$scope.errorMessage = "Invalid category!";
-            centrisNotify.error("Invalid category!");
+            centrisNotify.error("sellers.Messages.NoCategory", "sellers.Failed");
             return;
         }
         
         if ($scope.seller.imagePath.length === 0) {
-            //$scope.errorMessage = "Invalid image url!";
-            centrisNotify.error("Invalid image url!");
+            centrisNotify.error("sellers.Messages.NoImage", "sellers.Failed");
             return;
         }
 		$scope.$close($scope.seller);

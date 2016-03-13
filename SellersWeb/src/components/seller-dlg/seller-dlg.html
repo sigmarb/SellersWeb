@@ -1,15 +1,14 @@
 <body>
-<div>
-		<h3>Template</h3>
-
+<div >
+<h2><span translate="sellers.Add" class ="blackspan"/></h2>
 		<div>
-			<input types="text" ng-model="seller.name" placeholder="Name"/>
+			<input types="text" ng-model="seller.name" placeholder="{{ 'sellerDialog.Name' | translate }}"/>
 		</div>
 		<div>
-			<input types="text" ng-model="seller.category" placeholder="Category" />
+			<input types="text" ng-model="seller.category" placeholder="{{ 'sellerDialog.Category' | translate }}"/>
 		</div>
 		<div>
-			<input types="text" ng-model="seller.imagePath" placeholder="Image URL"/>
+			<input types="text" ng-model="seller.imagePath" placeholder="{{ 'sellerDialog.Image' | translate }}"/>
 		</div>
 		<div>
 			{{errorMessage}}

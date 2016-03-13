@@ -7,12 +7,15 @@
         "Edit":						 "Edit",
         "Image":                     "Image",
         "Ok":						 "Ok",
-        "Failed":                      "Failed",
+        "Failed":                    "Failed",
+        "Cancel":					 "Cancel",
 		"Messages" : {
 			"LoadFailed":            "Failed to load the list of sellers",
 			"SaveSucceeded":         "The seller has been added successfully",
 			"SaveFailed":            "Unfortunately we could not add a new seller",
             "NoName":                "Please fill in a name",
+            "NoCategory":            "Please fill in category",
+            "NoImage":               "Please add a photo url",
             "EditUserFailed":		 "Unfortunately we could not update this user",
             "EditUserSucceeded":     "The seller has been edited successfully"
 		}

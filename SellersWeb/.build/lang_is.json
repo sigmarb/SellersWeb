@@ -9,7 +9,30 @@
 		"Add": "Bæta við",
 		"Edit": "Breyta",
 		"AllProducts": "Allar Vörur",
-		"TopTen": "Topp 10"
+		"TopTen": "Topp 10",
+		"Failed": "Villa",
+		"Ok": "Í lagi",
+		"Cancel": "Hætta við",
+		"Messages": {
+			"LoadFailed": "Ekki tókst að sækja lista yfir vörur",
+			"SaveSucceeded": "Nýrri vöru hefur verið bætt við",
+			"SaveFailed": "Því miður tókst ekki að bæta við nýrri vöru",
+			"NoName": "Vinsamlegast fylltu inn nafn",
+			"NoPrice": "Vinsamlegast fylltu inn verð",
+			"NoQuantitySold": "Vinsamlegast fylltu inn magn selt",
+			"NoQuantityInStock": "Vinsamlegast fylltu inn magn á lager",
+			"NoImage": "Vinsamlegast settu inn slóð á mynd",
+			"EditProductFailed": "Því miður tókst ekki að uppfæra vöruna",
+			"EditProductSucceeded": "Varan hefur verið uppfærð"
+		}
+	},
+	"sellerDialog": {
+		"Name": "Nafn",
+		"Price": "Verð",
+		"QuantitySold": "Vörur seldar",
+		"QuantityInStock": "Vörur á lager",
+		"Image": "Mynd",
+		"Category": "Flokkur"
 	},
 	"sellers": {
 		"Title": "Seljendur",
@@ -18,7 +41,7 @@
 		"Edit": "Breyta",
 		"Category": "Flokkur",
 		"Image": "Mynd",
-		"Ok": "Ok",
+		"Ok": "Í lagi",
 		"Cancel": "Hætta við",
 		"Failed": "Villa",
 		"Messages": {
@@ -26,6 +49,8 @@
 			"SaveSucceeded": "Nýjum seljanda hefur verið bætt við",
 			"SaveFailed": "Því miður tókst ekki að bæta við nýjum seljanda",
 			"NoName": "Vinsamlegast fylltu inn nafn",
+			"NoCategory": "Vinsamlegast fylltu inn flokk",
+			"NoImage": "Vinsamlegast settu inn slóð á mynd",
 			"EditUserFailed": "Því miður tókst ekki að uppfæra notandann",
 			"EditUserSucceeded": "Selandinn hefur verið uppfærður"
 		}

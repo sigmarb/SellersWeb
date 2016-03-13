@@ -1,0 +1,11 @@
+{
+	"sellerDialog" : {
+		"Name":						"Nafn",
+		"Price":					"Verð",
+		"QuantitySold":				"Vörur seldar",
+		"QuantityInStock":			"Vörur á lager",
+		"Image":					"Mynd",
+        "Category":                 "Flokkur"
+
+	}
+}
