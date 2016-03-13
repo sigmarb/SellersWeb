@@ -1,17 +1,18 @@
+
 .sellerTable
 {
-	margin-left: 1%;
-}
-
-
-.Sellers {
-  /* TODO: add any Sellers-specific styles here! */
+	
 }
 
 .row-centered 
 {
     text-align:center;
-    margin-top: 6%;
+    margin-top: 2%;
+}
+
+.row-centeredSD
+{
+    border-top-width: thin;
 }
 
 .col-centered 
@@ -23,7 +24,7 @@
 }
 
 th, td {
-    padding: 3%;
+    padding: 4%;
     text-align: left;
     color: white;
 }
@@ -48,7 +49,7 @@ button
 
 body
 {
-	background-image: url("http://www.carbisbayhotel.co.uk/images/hero/coastal-properties-1.jpg");
+	background-color:lightgrey;
 	background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center; 
