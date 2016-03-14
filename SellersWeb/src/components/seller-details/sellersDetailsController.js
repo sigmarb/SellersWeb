@@ -8,6 +8,7 @@ function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg,
 	$scope.sellerTop10Product = [];
     $scope.DisplayAdd = true;
     $scope.isLoading = true;
+    $scope.alert = [];
     $scope.selectedProduct = {
         name: "",
         price: "",
@@ -41,10 +42,17 @@ function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg,
 		sellerProduct.sort(compare);
 		$scope.sellerTop10Product = sellerProduct.slice(0, 10);
         $scope.isLoading = false;
+        if($scope.sellerProduct.length === 0) {
+            $scope.alert.push({type: 'danger'});
+        }
 	}).error(function(){
         $scope.isLoading = false;
         centrisNotify.error("sellerDetails.Messages.LoadFailed", "sellerDetails.Failed");
     });
+    
+     $scope.closeAlert = function(index) {
+        $scope.alert.splice(index, 1);
+    };
 
     	function compare(a,b) 
 	{

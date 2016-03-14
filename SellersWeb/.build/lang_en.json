@@ -23,7 +23,8 @@
 			"NoQuantityInStock": "Please fill in quantity in stock",
 			"NoImage": "Please add a photo url",
 			"EditProductFailed": "Unfortunately we could not update this product",
-			"EditProductSucceeded": "The product has been edited successfully"
+			"EditProductSucceeded": "The product has been edited successfully",
+			"AlertMessage": "This seller does not have any products for sale!"
 		}
 	},
 	"sellerDialog": {

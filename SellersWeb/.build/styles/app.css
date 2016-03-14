@@ -78,10 +78,15 @@ h2 {
   border: none;
 }
 body {
-  background-color: lightsteelblue;
+  background-color: lightgray;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
   font-family: futura;
+}
+.alertMsg {
+  font-color: red;
+  font-size: 30px;
+  background-color: lightcoral;
 }

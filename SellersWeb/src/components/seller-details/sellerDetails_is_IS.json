@@ -23,7 +23,8 @@
             "NoQuantityInStock":     "Vinsamlegast fylltu inn magn á lager",
             "NoImage":               "Vinsamlegast settu inn slóð á mynd",
             "EditProductFailed":     "Því miður tókst ekki að uppfæra vöruna",
-            "EditProductSucceeded":  "Varan hefur verið uppfærð"
+            "EditProductSucceeded":  "Varan hefur verið uppfærð",
+            "AlertMessage":          "Þessi seljandi er ekki með neinar vörur til sölu!"
 		}
 	}
 }

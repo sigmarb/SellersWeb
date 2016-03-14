@@ -17,29 +17,32 @@
     <img src="{{seller.imagePath}}" alt="error" class="img-rounded" height="100" width="100">
     <span>{{seller.name}}</span>
 </div>
+
     <section class="table-responsive col-md-12 row-centeredSD">
     <div class="topten col-md-12 row-centered">
-            <ul ng-init="tab = 1">
+            <ul ng-show="sellerProduct != 0" ng-init="tab = 1">
                 <a href ng-click="tab = 1"><span translate="sellerDetails.AllProducts"></span></a>
                 <a href ng-click="tab = 2" class="top10"><span translate="sellerDetails.TopTen"></span></a>
     </div>
-
+    
             <br></br>
             <div class="col-md-12 row-centered">
-                <input type="text" ng-model="searchBox" placeholder ="" class="searchbar">
+                <input ng-show="sellerProduct != 0" type="text" ng-model="searchBox" placeholder ="" class="searchbar">
             </div>
             <div class="tabStyle" ng-show="tab === 1" class="table-responsive">
                 <table class="sellerTable col-centered">
                     <thead>
-                        <tr table-sort="name">
+                        <tr table-sort="name" ng-show="sellerProduct.length != 0">
                             <th></th>
                             <th data-columnName="name"><a translate="sellerDetails.Name"></span></th>
                             <th data-columnName="price"><a translate="sellerDetails.Price"></span></th>
                             <th data-columnName="quantitySold"><a translate="sellerDetails.QuantitySold"></span></th>
                             <th data-columnName="quantityInStock"><a translate="sellerDetails.QuantityInStock"></span></th>
                         </tr>
+                        
                     </thead>
                 <tbody></tbody>
+                
                 <tr ng-repeat="p in sellerProduct | orderBy:predicate:reverse | filter: searchBox">
                     <td><img src="{{p.imagePath}}" alt="error" class="img-rounded" height="100" width="100"></td>
                     <td >{{p.name}}</td>
@@ -50,11 +53,12 @@
                 </tr> 
                 </tbody>
                 </table>
+                <uib-alert class="alertMsg" ng-show="sellerProduct.length == 0" ng-repeat="a in alert" type="{{a.type}}" close="closeAlert($index)"><span translate="sellerDetails.Messages.AlertMessage"/></uib-alert>
             </div>
                 <div class="tabStyle" ng-show="tab === 2" class="table-responsive">
                     <table class="sellerTable col-centered">
                     <thead>
-                            
+                        
                             <tr table-sort="name">
                             <th><span></span></th>
                             <th data-columnName="name"><span translate="sellerDetails.Name"></span></th>
@@ -75,9 +79,11 @@
                 </tr> 
                 </tbody>
                 </table>
-
+                
                 </div>
+                
             </div>
+            
         </ul>
     </section>
 </body>
