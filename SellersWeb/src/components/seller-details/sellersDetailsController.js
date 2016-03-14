@@ -1,7 +1,7 @@
 "use strict";
 
-angular.module("project3App").controller("sellersDetailsController", ["$scope", "AppResource", "$routeParams", "ProductDlg", "centrisNotify", "$translate",
-function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg, centrisNotify, $translate) {
+angular.module("project3App").controller("sellersDetailsController", ["$scope", "AppResource", "$routeParams", "ProductDlg", "centrisNotify", "$translate", "editProductDlg",
+function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg, centrisNotify, $translate, editProductDlg) {
     $scope.id = $routeParams.id;
 	$scope.seller = {};
 	$scope.sellerProduct = [];
@@ -87,7 +87,7 @@ function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg,
     };
     
     $scope.onUpdateProduct = function onUpdateProduct(productID) {
-        ProductDlg.show().then(function(product){
+        editProductDlg.show().then(function(product){
             AppResource.updateSellerProduct(productID.id, product).success(function(product) {
                 centrisNotify.success("sellerDetails.Messages.EditProductSucceeded", "sellerDetails.Ok");
 	}).error(function(){
