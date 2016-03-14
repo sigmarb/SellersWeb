@@ -1,0 +1,27 @@
+<body>
+<h2><span translate="sellers.Edit" class ="blackspan"/></h2>
+<div class="col-md-12 row-centered">
+
+		<div>
+			<input types="text" ng-model="seller.name" placeholder="{{ 'sellerDialog.Name' | translate }}"/>
+		</div>
+		<div>
+			<input types="text" ng-model="seller.category" placeholder="{{ 'sellerDialog.Category' | translate }}"/>
+		</div>
+		<div>
+			<input types="text" ng-model="seller.imagePath" placeholder="{{ 'sellerDialog.Image' | translate }}"/>
+		</div>
+		<div>
+			{{errorMessage}}
+		</div>
+		<div class="margintop">
+			<button class="btn btn-primary" ng-click="onOk()">
+				<span translate="sellers.Ok"></span>
+			</button>
+			<button class="btn btn-primary" ng-click="onCancel()">
+				<span translate="sellers.Cancel"></span>
+			</button>
+		</div>
+
+</div>
+</body>

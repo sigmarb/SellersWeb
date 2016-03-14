@@ -130,6 +130,22 @@ function ProductDlgController($scope, centrisNotify) {
 }); 
 "use strict";
 
+angular.module("project3App").factory("editProductDlg", 
+	function editProductDlg($uibModal)
+	{
+		return {
+			show: function(){
+				var modalInstance = $uibModal.open({
+					templateUrl:"components/product/editProduct-dlg.html",
+					controller:"ProductDlgController"
+
+				});
+				return modalInstance.result;
+			}
+		};
+});
+"use strict";
+
 /**
  * This module serves as the main resource object for our app, i.e.
  * the object which connects to our REST backend and loads/saves data.
@@ -324,8 +340,8 @@ function AppResource() {
 });
 "use strict";
 
-angular.module("project3App").controller("sellersDetailsController", ["$scope", "AppResource", "$routeParams", "ProductDlg", "centrisNotify", "$translate",
-function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg, centrisNotify, $translate) {
+angular.module("project3App").controller("sellersDetailsController", ["$scope", "AppResource", "$routeParams", "ProductDlg", "centrisNotify", "$translate", "editProductDlg",
+function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg, centrisNotify, $translate, editProductDlg) {
     $scope.id = $routeParams.id;
 	$scope.seller = {};
 	$scope.sellerProduct = [];
@@ -411,7 +427,7 @@ function sellersDetailsController($scope, AppResource, $routeParams, ProductDlg,
     };
     
     $scope.onUpdateProduct = function onUpdateProduct(productID) {
-        ProductDlg.show().then(function(product){
+        editProductDlg.show().then(function(product){
             AppResource.updateSellerProduct(productID.id, product).success(function(product) {
                 centrisNotify.success("sellerDetails.Messages.EditProductSucceeded", "sellerDetails.Ok");
 	}).error(function(){
@@ -464,6 +480,22 @@ function SellerDlgController($scope, centrisNotify, $translate) {
 }); 
 "use strict";
 
+angular.module("project3App").factory("editSellerDlg", 
+	function editSellerDlg($uibModal)
+	{
+		return {
+			show: function(){
+				var modalInstance = $uibModal.open({
+					templateUrl:"components/seller-dlg/editSeller-dlg.html",
+					controller:"SellerDlgController"
+
+				});
+				return modalInstance.result;
+			}
+		};
+	});
+"use strict";
+
 angular.module("project3App").factory("SellerDlg", 
 	function SellerDlg($uibModal)
 	{
@@ -478,63 +510,6 @@ angular.module("project3App").factory("SellerDlg",
 			}
 		};
 	});
-"use strict";
-
-angular.module("project3App").controller("SellersController",
-function SellersController($scope, AppResource, centrisNotify, SellerDlg, $translate) {
-	// TODO: load data from AppResource! Also, add other methods, such as to
-	// add/update sellers etc.
-
-		$scope.isLoading = true;
-		$scope.selectedUser = {
-			name: "",
-			category: "",
-			imagePath: ""
-		};
-
-
-		var result = AppResource.getSellers();
-		console.log(result);
-		result.success(function(sellers)
-		{
-			$scope.sellers = sellers;
-			$scope.isLoading = false;
-		}).error(function(){
-			$scope.isLoading = false;
-            centrisNotify.error("sellers.Messages.LoadFailed", "sellers.Failed");
-		});
-
-		function getSelectedUser(){
-			return $scope.selectedUser;
-		}
-
-		$scope.onAddSeller = function onAddSeller()
-		{
-			SellerDlg.show().then(function(seller){
-					AppResource.addSeller(seller).success(function(seller){
-                        centrisNotify.success("sellers.Messages.SaveSucceeded", "sellers.Ok");
-					}).error(function() {
-							centrisNotify.error("sellers.Messages.SaveFailed", "sellers.Failed");
-				});
-			});
-
-		};
-
-		$scope.onEditSeller = function onEditSeller(sellerId)
-		{
-			SellerDlg.show().then(function(seller){
-					AppResource.updateSeller(sellerId,seller).success(function(seller){
-                        centrisNotify.success("sellers.Messages.EditUserSucceeded", "sellers.Ok");
-					}).error(function() {
-							centrisNotify.error("sellers.Messages.EditUserFailed", "sellers.Failed");
-				});
-			});
-		};
-
-		$scope.changeLanguage = function changeLanguage(key){
-			$translate.use(key);
-		};
-});
 "use strict";
 
 /**
@@ -815,4 +790,62 @@ angular.module("sharedServices").directive("tableSort", function () {
 		replace: false,
 		link: link
 	};
+});
+
+"use strict";
+
+angular.module("project3App").controller("SellersController",
+function SellersController($scope, AppResource, centrisNotify, SellerDlg, $translate, editSellerDlg) {
+	// TODO: load data from AppResource! Also, add other methods, such as to
+	// add/update sellers etc.
+
+		$scope.isLoading = true;
+		$scope.selectedUser = {
+			name: "",
+			category: "",
+			imagePath: ""
+		};
+
+
+		var result = AppResource.getSellers();
+		console.log(result);
+		result.success(function(sellers)
+		{
+			$scope.sellers = sellers;
+			$scope.isLoading = false;
+		}).error(function(){
+			$scope.isLoading = false;
+            centrisNotify.error("sellers.Messages.LoadFailed", "sellers.Failed");
+		});
+
+		function getSelectedUser(){
+			return $scope.selectedUser;
+		}
+
+		$scope.onAddSeller = function onAddSeller()
+		{
+			SellerDlg.show().then(function(seller){
+					AppResource.addSeller(seller).success(function(seller){
+                        centrisNotify.success("sellers.Messages.SaveSucceeded", "sellers.Ok");
+					}).error(function() {
+							centrisNotify.error("sellers.Messages.SaveFailed", "sellers.Failed");
+				});
+			});
+
+		};
+
+		$scope.onEditSeller = function onEditSeller(sellerId)
+		{
+			editSellerDlg.show().then(function(seller){
+					AppResource.updateSeller(sellerId,seller).success(function(seller){
+                        centrisNotify.success("sellers.Messages.EditUserSucceeded", "sellers.Ok");
+					}).error(function() {
+							centrisNotify.error("sellers.Messages.EditUserFailed", "sellers.Failed");
+				});
+			});
+		};
+
+		$scope.changeLanguage = function changeLanguage(key){
+			$translate.use(key);
+		};
 });

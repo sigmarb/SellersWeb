@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("project3App").controller("SellersController",
-function SellersController($scope, AppResource, centrisNotify, SellerDlg, $translate) {
+function SellersController($scope, AppResource, centrisNotify, SellerDlg, $translate, editSellerDlg) {
 	// TODO: load data from AppResource! Also, add other methods, such as to
 	// add/update sellers etc.
 
@@ -42,7 +42,7 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg, $trans
 
 		$scope.onEditSeller = function onEditSeller(sellerId)
 		{
-			SellerDlg.show().then(function(seller){
+			editSellerDlg.show().then(function(seller){
 					AppResource.updateSeller(sellerId,seller).success(function(seller){
                         centrisNotify.success("sellers.Messages.EditUserSucceeded", "sellers.Ok");
 					}).error(function() {

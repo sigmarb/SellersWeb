@@ -1,0 +1,31 @@
+<body>
+<h2><span translate="sellerDetails.Edit" class ="blackspan"/></h2>
+<div>
+		<div>
+			<input types="text" ng-model="product.name" placeholder="Name"/>
+		</div>
+		<div>
+			<input types="text" ng-model="product.price" placeholder="Price" />
+		</div>
+        <div>
+			<input types="text" ng-model="product.quantitySold" placeholder="Quantity sold" />
+		</div>
+        <div>
+			<input types="text" ng-model="product.quantityInStock" placeholder="Quantity in stock" />
+		</div>        
+		<div>
+			<input types="text" ng-model="product.imagePath" placeholder="Image URL"/>
+		</div>
+		<div>
+			{{errorMessage}}
+		</div>
+
+		<button class="btn btn-primary" ng-click="onOk()">
+			<span translate="sellerDetails.Ok"></span>
+		</button>
+		<button class="btn btn-primary" ng-click="onCancel()">
+			<span translate="sellerDetails.Cancel"></span>
+		</button>
+
+</div>
+</body>
