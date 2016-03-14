@@ -1,31 +1,32 @@
 <body>
 <h2><span translate="sellerDetails.Edit" class ="blackspan"/></h2>
-<div>
+<div class="col-md-12 row-centered">
 		<div>
-			<input types="text" ng-model="product.name" placeholder="Name"/>
+			<input types="text" ng-model="product.name" placeholder="{{ 'sellerDialog.Name' | translate }}"/>
 		</div>
 		<div>
-			<input types="text" ng-model="product.price" placeholder="Price" />
+			<input types="text" ng-model="product.price" placeholder="{{ 'sellerDialog.Price' | translate }}" />
 		</div>
         <div>
-			<input types="text" ng-model="product.quantitySold" placeholder="Quantity sold" />
+			<input types="text" ng-model="product.quantitySold" placeholder="{{ 'sellerDialog.QuantitySold' | translate }}" />
 		</div>
         <div>
-			<input types="text" ng-model="product.quantityInStock" placeholder="Quantity in stock" />
+			<input types="text" ng-model="product.quantityInStock" placeholder="{{ 'sellerDialog.QuantityInStock' | translate }}" />
 		</div>        
 		<div>
-			<input types="text" ng-model="product.imagePath" placeholder="Image URL"/>
+			<input types="text" ng-model="product.imagePath" placeholder="{{ 'sellerDialog.Image' | translate }}"/>
 		</div>
 		<div>
 			{{errorMessage}}
 		</div>
 
-		<button class="btn btn-primary" ng-click="onOk()">
-			<span translate="sellerDetails.Ok"></span>
-		</button>
-		<button class="btn btn-primary" ng-click="onCancel()">
-			<span translate="sellerDetails.Cancel"></span>
-		</button>
-
+		<div class="margintop">
+			<button class="btn btn-primary" ng-click="onOk()">
+				<span translate="sellerDetails.Ok"></span>
+			</button>
+			<button class="btn btn-primary" ng-click="onCancel()">
+				<span translate="sellerDetails.Cancel"></span>
+			</button>
+		</div>
 </div>
 </body>
