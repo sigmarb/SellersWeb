@@ -49,288 +49,6 @@ ng-click="go('/alert_instance/{{ai.alert_instancne_id}}')
 angular.module("sharedServices", ["toastr"]);
 "use strict";
 
-/**
- * @ngdoc object
- * @name general.tableSort
- * @description
- * Use this directive to sort columns in a table. To use it you add
- * the directive to the table row <tr>, then you have to add data-columnName
- * to each <th> which should be sortable. The directive can take a string
- * parameter which will be used as the default column to be sorted.
- *
- * Note that this directive is currently a bit brutal, i.e. it will remove
- * ALL css classes from the table headings when a column is no longer the default
- * sort column (this may have to change later).
- *
- * Dependencies:
- *
- * * Depends on Font Awesome for the caret icon.
- *
- * @example
- * ```html
- * <!-- a) For each column that should be sortable, add the data-columnName attribute,
- * with the value of the sort expression: -->
- *
- * <tr table-sort="Name">
- *     <th data-columnName="Name">Name</th>
- *     <!-- etc. for each column in the table -->;
- * </tr>
- *
- * <!-- b) in your ng-repeat for the table rows, ensure you are using orderBy filter
- * with predicate and reverse (which are scope variables created by this
- * directive): -->
- *
- * <tr ng-repeat="stuff in stuffz | orderBy:predicate:reverse">
- *
- * <!-- If the sort order should be reversed initially, place a minus sign in front of
- *      the name of the default column: -->
- * <tr table-sort="-Name">
- * ```
- */
-angular.module("sharedServices").directive("tableSort", function () {
-	function link(scope, element, attrs) {
-		var tableChildren = element.children();
-		var defaultColumn = attrs.tableSort;
-		var reverse = attrs["reverse"] || "reverse";
-		var predicate = attrs["predicate"] || "predicate";
-
-		if (defaultColumn.length > 0 && defaultColumn[0] === "-") {
-			scope[reverse] = true;
-			scope[predicate] = defaultColumn.substring(1);
-		} else {
-			scope[reverse] = false;
-			scope[predicate] = defaultColumn;
-		}
-
-		function initClickHandlers() {
-			angular.forEach(tableChildren, function(value) {
-				var el = angular.element(value);
-				var columnName = el.attr("columnName") || el.attr("data-columnName");
-
-				// Only attach a click handler if:
-				// a) the <th> element has a non-empty data-columnName attribute.
-				// b) there isn't already a click handler there
-				if (isSortColumn(columnName)) {
-					if (el.attr("ng-click") === undefined) {
-						el.bind("click", function(e) {
-							scope.$apply(function() {
-								sortNotes(columnName);
-							});
-						});
-					}
-				}
-			});
-		}
-		initClickHandlers();
-
-		// In case the number of columns is variable (or generated using
-		// a ng-repeat), we need to watch for new columns.
-		// TODO: doesn't quite work yet!
-		/*
-		scope.$watch(element.children().length, function(){
-			console.log("Length of elements has changed!");
-			initClickHandlers();
-		});
-		*/
-		// Setup the columns adding <i> to all table headers and
-		// adds caret class to the default column.
-		function setup() {
-			angular.forEach(tableChildren, function(value) {
-				var el = angular.element(value);
-				var columnName = el.attr("columnName") || el.attr("data-columnName");
-				if (isSortColumn(columnName)) {
-					el.prepend("<i></i>");
-					if (columnName === defaultColumn || columnName === "'" + defaultColumn + "'") {
-						el.children().addClass("fa fa-caret-" + (scope[reverse] ? "up" : "down"));
-					}
-				}
-			});
-		}
-
-		function isSortColumn(columnName) {
-			return columnName !== undefined && columnName.length > 0;
-		}
-
-		function sortNotes(sortBy) {
-			if (scope[predicate] === sortBy) {
-				scope[reverse] = !scope[reverse];
-			}
-			scope[predicate] = sortBy;
-			angular.forEach(tableChildren, function(value) {
-				var el = angular.element(value);
-				var columnName = el.attr("columnName") || el.attr("data-columnName");
-				if (isSortColumn(columnName)) {
-					el.children().removeClass();
-					if (scope[predicate] === columnName) {
-						el.children().addClass("fa fa-caret-" + (sortDown(sortBy) ? "up" : "down"));
-					}
-				}
-			});
-		}
-
-		// Helper function:
-		function sortDown(sortType) {
-			return scope[reverse] && scope[predicate] === sortType;
-		}
-
-		scope.$watch("tableSort", function(value) {
-			if (value) {
-				defaultColumn = value;
-			}
-			setup();
-		});
-	}
-
-	return {
-		restrict: "A",
-		replace: false,
-		link: link
-	};
-});
-
-"use strict";
-
-/**
- * @ngdoc service
- * @name general.centrisNotify
- * @description
- * A common notification service. Usage:
- *
- * a) inject centrisNotify into your controller/factory/whatever
- * b) at the appropriate time, call one of the following methods:
- *
- * ```js
- *    centrisNotify.success("app.LanguageFileKey");
- *    centrisNotify.error("app.LanguageFileKey");
- *    centrisNotify.successWithParam("app.LanguageKey", someValue);
- *    centrisNotify.errorWithParam("app.LanguageKey", someValue);
- *    centrisNotify.successWithUndo("app.LanguageKey", undoID); // Displays a "Undo" button
- * ```
- *
- *    The first two methods accept an optional second parameter which
- *    is the title of the notification. However, it is preferred
- *    to specify the title in language files under the key "NotificationTitle".
- *    The next two methods will take a string which is a key into a language
- *    file, plus some variable, and inject the value of the variable into
- *    the string. It is assumed that the placeholder inside the string is
- *    on the format {{value}}
- *    The final version - successWithUndo - accepts a single language key
- *    string, as well as another value. This function will display an "undo"
- *    button, and this second parameter will be passed to that function. That
- *    parameter should contain two properties:
- *    * "type" - a string with the type of object being operated on
- *    * "id" - a value (simple or comples) which identifies the object being operated on
- *
- */
-angular.module("sharedServices").factory("centrisNotify",
-function(toastr, toastrConfig, $translate, $rootScope) {
-	var durationMSec = 10000;
-	var defaultTitle = "Centris";
-
-	// Is this the correct place for this? Perhaps not. But we
-	// want the code to be DRY, and we don't want to
-	// repeat this. I.e. there is a support for undo in our
-	// custom template (that is the purpose of it!), and
-	// there must be a common event handler for the undo.
-	// This is as good place as any other (probably better),
-	// but if a better place will be found, please move this function!
-	$rootScope.centrisUndo = function centrisUndo(type, id) {
-		$rootScope.$broadcast("centrisUndo", {type: type, id: id});
-	};
-
-	// Load the title to the notification from language files.
-	// Since the factory will probably be created at startup,
-	// the language files may or may not be properly loaded.
-	// Therefore, we use the promise version.
-	$translate("NotificationTitle").then(function(value) {
-		defaultTitle = value;
-	});
-
-	function displayMessage(type, message, title) {
-		var options = {
-			timeOut: durationMSec
-		};
-
-		// In case the previous toast was an undo toast,
-		// which overrode the template path:
-		toastrConfig.templates.toast = "shared/notify/centris-notify.tpl.html";
-
-		if (type === "success") {
-			toastr.success(message, title, options);
-		} else if (type === "error") {
-			toastr.error(message, title, options);
-		}
-	}
-
-	// Declare the function which takes care of the actual notification:
-	var notificationFunction = function notificationFunction(type, titleKey, messageKey) {
-		var message = $translate.instant(messageKey);
-		var title   = defaultTitle;
-
-		if (titleKey !== undefined) {
-			title = $translate.instant(titleKey);
-		}
-
-		displayMessage(type, message, title);
-	};
-
-	var displayMessageWithUndo = function displayMessageWithUndo(message, undoID) {
-		var options = {
-			timeOut: durationMSec
-		};
-
-		// Slight hack, but hopefully the library will be able to
-		// officcially support per-toast templates in later versions
-		toastrConfig.templates.toast = "shared/notify/centris-notify-undo.tpl.html";
-
-		// HACK! Because toastr doesn't allow us to pass in
-		// any "Item Data" (see MFC CListCtrl), we need to
-		// "sneak" the undoID in somehow differently. Since
-		// our custom template hardcodes the title, we
-		// don't need to use that parameter, and can pass the
-		// undoID in there instead!
-		toastr.success(undoID, message, options);
-		// Oh and this is also very hackish, we need to switch
-		// the title and the message because of some logic
-		// in the library (sigh)
-	};
-
-	var notificationFunctionWithParam = function notificationFunctionWithParam(type, messageKey, param) {
-		$translate(messageKey, { value: param }).then( function(msg) {
-			displayMessage(type, msg, defaultTitle);
-		});
-	};
-
-	var notificationFunctionWithUndo = function notificationFunctionWithUndo(messageKey, undoID) {
-		$translate(messageKey).then(function(msg) {
-			displayMessageWithUndo(msg, undoID);
-		});
-	};
-
-	return {
-		success: function success(messageKey, titleKey) {
-			notificationFunction("success", titleKey, messageKey);
-		},
-		error: function error(messageKey, titleKey) {
-			notificationFunction("error", titleKey, messageKey);
-		},
-		successWithParam: function successWithParam(messageKey, param) {
-			notificationFunctionWithParam("success", messageKey, param);
-		},
-		errorWithParam: function errorWithParam(messageKey, param) {
-			notificationFunctionWithParam("error", messageKey, param);
-		},
-
-		// This function only comes in the "success" variation, since
-		// we hardly need undo support for messages which only
-		// display error messages, do we?
-		successWithUndo: function successWithUndo(messageKey, undoID) {
-			notificationFunctionWithUndo(messageKey, undoID);
-		}
-	};
-});
-"use strict";
-
 angular.module("project3App").directive("loadingMessage",
 
 function loadingMessage()
@@ -816,4 +534,285 @@ function SellersController($scope, AppResource, centrisNotify, SellerDlg, $trans
 		$scope.changeLanguage = function changeLanguage(key){
 			$translate.use(key);
 		};
+});
+"use strict";
+
+/**
+ * @ngdoc service
+ * @name general.centrisNotify
+ * @description
+ * A common notification service. Usage:
+ *
+ * a) inject centrisNotify into your controller/factory/whatever
+ * b) at the appropriate time, call one of the following methods:
+ *
+ * ```js
+ *    centrisNotify.success("app.LanguageFileKey");
+ *    centrisNotify.error("app.LanguageFileKey");
+ *    centrisNotify.successWithParam("app.LanguageKey", someValue);
+ *    centrisNotify.errorWithParam("app.LanguageKey", someValue);
+ *    centrisNotify.successWithUndo("app.LanguageKey", undoID); // Displays a "Undo" button
+ * ```
+ *
+ *    The first two methods accept an optional second parameter which
+ *    is the title of the notification. However, it is preferred
+ *    to specify the title in language files under the key "NotificationTitle".
+ *    The next two methods will take a string which is a key into a language
+ *    file, plus some variable, and inject the value of the variable into
+ *    the string. It is assumed that the placeholder inside the string is
+ *    on the format {{value}}
+ *    The final version - successWithUndo - accepts a single language key
+ *    string, as well as another value. This function will display an "undo"
+ *    button, and this second parameter will be passed to that function. That
+ *    parameter should contain two properties:
+ *    * "type" - a string with the type of object being operated on
+ *    * "id" - a value (simple or comples) which identifies the object being operated on
+ *
+ */
+angular.module("sharedServices").factory("centrisNotify",
+function(toastr, toastrConfig, $translate, $rootScope) {
+	var durationMSec = 10000;
+	var defaultTitle = "Centris";
+
+	// Is this the correct place for this? Perhaps not. But we
+	// want the code to be DRY, and we don't want to
+	// repeat this. I.e. there is a support for undo in our
+	// custom template (that is the purpose of it!), and
+	// there must be a common event handler for the undo.
+	// This is as good place as any other (probably better),
+	// but if a better place will be found, please move this function!
+	$rootScope.centrisUndo = function centrisUndo(type, id) {
+		$rootScope.$broadcast("centrisUndo", {type: type, id: id});
+	};
+
+	// Load the title to the notification from language files.
+	// Since the factory will probably be created at startup,
+	// the language files may or may not be properly loaded.
+	// Therefore, we use the promise version.
+	$translate("NotificationTitle").then(function(value) {
+		defaultTitle = value;
+	});
+
+	function displayMessage(type, message, title) {
+		var options = {
+			timeOut: durationMSec
+		};
+
+		// In case the previous toast was an undo toast,
+		// which overrode the template path:
+		toastrConfig.templates.toast = "shared/notify/centris-notify.tpl.html";
+
+		if (type === "success") {
+			toastr.success(message, title, options);
+		} else if (type === "error") {
+			toastr.error(message, title, options);
+		}
+	}
+
+	// Declare the function which takes care of the actual notification:
+	var notificationFunction = function notificationFunction(type, titleKey, messageKey) {
+		var message = $translate.instant(messageKey);
+		var title   = defaultTitle;
+
+		if (titleKey !== undefined) {
+			title = $translate.instant(titleKey);
+		}
+
+		displayMessage(type, message, title);
+	};
+
+	var displayMessageWithUndo = function displayMessageWithUndo(message, undoID) {
+		var options = {
+			timeOut: durationMSec
+		};
+
+		// Slight hack, but hopefully the library will be able to
+		// officcially support per-toast templates in later versions
+		toastrConfig.templates.toast = "shared/notify/centris-notify-undo.tpl.html";
+
+		// HACK! Because toastr doesn't allow us to pass in
+		// any "Item Data" (see MFC CListCtrl), we need to
+		// "sneak" the undoID in somehow differently. Since
+		// our custom template hardcodes the title, we
+		// don't need to use that parameter, and can pass the
+		// undoID in there instead!
+		toastr.success(undoID, message, options);
+		// Oh and this is also very hackish, we need to switch
+		// the title and the message because of some logic
+		// in the library (sigh)
+	};
+
+	var notificationFunctionWithParam = function notificationFunctionWithParam(type, messageKey, param) {
+		$translate(messageKey, { value: param }).then( function(msg) {
+			displayMessage(type, msg, defaultTitle);
+		});
+	};
+
+	var notificationFunctionWithUndo = function notificationFunctionWithUndo(messageKey, undoID) {
+		$translate(messageKey).then(function(msg) {
+			displayMessageWithUndo(msg, undoID);
+		});
+	};
+
+	return {
+		success: function success(messageKey, titleKey) {
+			notificationFunction("success", titleKey, messageKey);
+		},
+		error: function error(messageKey, titleKey) {
+			notificationFunction("error", titleKey, messageKey);
+		},
+		successWithParam: function successWithParam(messageKey, param) {
+			notificationFunctionWithParam("success", messageKey, param);
+		},
+		errorWithParam: function errorWithParam(messageKey, param) {
+			notificationFunctionWithParam("error", messageKey, param);
+		},
+
+		// This function only comes in the "success" variation, since
+		// we hardly need undo support for messages which only
+		// display error messages, do we?
+		successWithUndo: function successWithUndo(messageKey, undoID) {
+			notificationFunctionWithUndo(messageKey, undoID);
+		}
+	};
+});
+"use strict";
+
+/**
+ * @ngdoc object
+ * @name general.tableSort
+ * @description
+ * Use this directive to sort columns in a table. To use it you add
+ * the directive to the table row <tr>, then you have to add data-columnName
+ * to each <th> which should be sortable. The directive can take a string
+ * parameter which will be used as the default column to be sorted.
+ *
+ * Note that this directive is currently a bit brutal, i.e. it will remove
+ * ALL css classes from the table headings when a column is no longer the default
+ * sort column (this may have to change later).
+ *
+ * Dependencies:
+ *
+ * * Depends on Font Awesome for the caret icon.
+ *
+ * @example
+ * ```html
+ * <!-- a) For each column that should be sortable, add the data-columnName attribute,
+ * with the value of the sort expression: -->
+ *
+ * <tr table-sort="Name">
+ *     <th data-columnName="Name">Name</th>
+ *     <!-- etc. for each column in the table -->;
+ * </tr>
+ *
+ * <!-- b) in your ng-repeat for the table rows, ensure you are using orderBy filter
+ * with predicate and reverse (which are scope variables created by this
+ * directive): -->
+ *
+ * <tr ng-repeat="stuff in stuffz | orderBy:predicate:reverse">
+ *
+ * <!-- If the sort order should be reversed initially, place a minus sign in front of
+ *      the name of the default column: -->
+ * <tr table-sort="-Name">
+ * ```
+ */
+angular.module("sharedServices").directive("tableSort", function () {
+	function link(scope, element, attrs) {
+		var tableChildren = element.children();
+		var defaultColumn = attrs.tableSort;
+		var reverse = attrs["reverse"] || "reverse";
+		var predicate = attrs["predicate"] || "predicate";
+
+		if (defaultColumn.length > 0 && defaultColumn[0] === "-") {
+			scope[reverse] = true;
+			scope[predicate] = defaultColumn.substring(1);
+		} else {
+			scope[reverse] = false;
+			scope[predicate] = defaultColumn;
+		}
+
+		function initClickHandlers() {
+			angular.forEach(tableChildren, function(value) {
+				var el = angular.element(value);
+				var columnName = el.attr("columnName") || el.attr("data-columnName");
+
+				// Only attach a click handler if:
+				// a) the <th> element has a non-empty data-columnName attribute.
+				// b) there isn't already a click handler there
+				if (isSortColumn(columnName)) {
+					if (el.attr("ng-click") === undefined) {
+						el.bind("click", function(e) {
+							scope.$apply(function() {
+								sortNotes(columnName);
+							});
+						});
+					}
+				}
+			});
+		}
+		initClickHandlers();
+
+		// In case the number of columns is variable (or generated using
+		// a ng-repeat), we need to watch for new columns.
+		// TODO: doesn't quite work yet!
+		/*
+		scope.$watch(element.children().length, function(){
+			console.log("Length of elements has changed!");
+			initClickHandlers();
+		});
+		*/
+		// Setup the columns adding <i> to all table headers and
+		// adds caret class to the default column.
+		function setup() {
+			angular.forEach(tableChildren, function(value) {
+				var el = angular.element(value);
+				var columnName = el.attr("columnName") || el.attr("data-columnName");
+				if (isSortColumn(columnName)) {
+					el.prepend("<i></i>");
+					if (columnName === defaultColumn || columnName === "'" + defaultColumn + "'") {
+						el.children().addClass("fa fa-caret-" + (scope[reverse] ? "up" : "down"));
+					}
+				}
+			});
+		}
+
+		function isSortColumn(columnName) {
+			return columnName !== undefined && columnName.length > 0;
+		}
+
+		function sortNotes(sortBy) {
+			if (scope[predicate] === sortBy) {
+				scope[reverse] = !scope[reverse];
+			}
+			scope[predicate] = sortBy;
+			angular.forEach(tableChildren, function(value) {
+				var el = angular.element(value);
+				var columnName = el.attr("columnName") || el.attr("data-columnName");
+				if (isSortColumn(columnName)) {
+					el.children().removeClass();
+					if (scope[predicate] === columnName) {
+						el.children().addClass("fa fa-caret-" + (sortDown(sortBy) ? "up" : "down"));
+					}
+				}
+			});
+		}
+
+		// Helper function:
+		function sortDown(sortType) {
+			return scope[reverse] && scope[predicate] === sortType;
+		}
+
+		scope.$watch("tableSort", function(value) {
+			if (value) {
+				defaultColumn = value;
+			}
+			setup();
+		});
+	}
+
+	return {
+		restrict: "A",
+		replace: false,
+		link: link
+	};
 });

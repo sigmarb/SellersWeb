@@ -21,21 +21,20 @@
 </div>
 <div >
 <div class="col-md-12 row-centered">
-                <input type="text" ng-model="searchBox">
+                <input type="text" ng-model="searchBox" class="searchbar">
             </div>
 	<div class="table-responsive col-md-12 row-centered">
 			<table class="sellerTable col-centered">
 				<thead>
 					<tr table-sort="name">
 					<th class="th">
-						
 						</th>
 						<th class="th" data-columnName="name">
 						<i class="fa fa-plus"/>
-							<span translate="sellers.Name" ng-mouseover="sellers.Name"/>
+							<a translate="sellers.Name" ng-mouseover="sellers.Name"/>
 						</th>
 						<th class="th" data-columnName="category">
-							<span translate="sellers.Category"/>
+							<a translate="sellers.Category"/>
 						</th>
 						<th>
 						</th>

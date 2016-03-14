@@ -1,6 +1,7 @@
 <body>
-<div >
 <h2><span translate="sellers.Add" class ="blackspan"/></h2>
+<div class="col-md-12 row-centered">
+
 		<div>
 			<input types="text" ng-model="seller.name" placeholder="{{ 'sellerDialog.Name' | translate }}"/>
 		</div>
@@ -13,13 +14,14 @@
 		<div>
 			{{errorMessage}}
 		</div>
-
-		<button class="btn btn-primary" ng-click="onOk()">
-			<span translate="sellers.Ok"></span>
-		</button>
-		<button class="btn btn-primary" ng-click="onCancel()">
-			<span translate="sellers.Cancel"></span>
-		</button>
+		<div class="margintop">
+			<button class="btn btn-primary" ng-click="onOk()">
+				<span translate="sellers.Ok"></span>
+			</button>
+			<button class="btn btn-primary" ng-click="onCancel()">
+				<span translate="sellers.Cancel"></span>
+			</button>
+		</div>
 
 </div>
 </body>

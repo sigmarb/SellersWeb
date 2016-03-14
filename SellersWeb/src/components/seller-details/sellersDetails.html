@@ -26,17 +26,17 @@
 
             <br></br>
             <div class="col-md-12 row-centered">
-                <input type="text" ng-model="searchBox">
+                <input type="text" ng-model="searchBox" placeholder ="" class="searchbar">
             </div>
             <div class="tabStyle" ng-show="tab === 1" class="table-responsive">
                 <table class="sellerTable col-centered">
                     <thead>
                         <tr table-sort="name">
                             <th></th>
-                            <th data-columnName="name"><span translate="sellerDetails.Name"></span></th>
-                            <th data-columnName="price"><span translate="sellerDetails.Price"></span></th>
-                            <th data-columnName="quantitySold"><span translate="sellerDetails.QuantitySold"></span></th>
-                            <th data-columnName="quantityInStock"><span translate="sellerDetails.QuantityInStock"></span></th>
+                            <th data-columnName="name"><a translate="sellerDetails.Name"></span></th>
+                            <th data-columnName="price"><a translate="sellerDetails.Price"></span></th>
+                            <th data-columnName="quantitySold"><a translate="sellerDetails.QuantitySold"></span></th>
+                            <th data-columnName="quantityInStock"><a translate="sellerDetails.QuantityInStock"></span></th>
                         </tr>
                     </thead>
                 <tbody></tbody>
